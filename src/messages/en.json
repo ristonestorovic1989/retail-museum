@@ -1,0 +1,579 @@
+{
+  "title": "Dashboard",
+  "subtitle": "Overview of your devices, playlists and assets",
+  "dashboard": {
+    "statCard": {
+      "activeUsers": "Active users",
+      "totalDevices": "Total devices",
+      "totalAssets": "Total assets",
+      "storageUsed": "Storage Used"
+    },
+    "badges": {
+      "active": "Active",
+      "online": "Online",
+      "offline": "Offline",
+      "updated": "Updated",
+      "notUpdated": "Not updated"
+    },
+    "hints": {
+      "devicesUpdated": "{percent}% updated",
+      "assetsKinds": "Videos, Images & More",
+      "assetsPublished": "{published} published, {archived} archived",
+      "storageUsage": "{percent}% of {total}"
+    },
+    "tabs": {
+      "activeDevices": "Active Devices",
+      "recentPlaylists": "Recent Playlists",
+      "latestAssets": "Latest Assets"
+    },
+    "placeholders": {
+      "recentPlaylists": "Recent playlists placeholder…",
+      "latestAssets": "Latest assets placeholder…"
+    },
+    "assetsDistribution": {
+      "title": "Assets Distribution",
+      "description": "Distribution of assets by type",
+      "series": {
+        "count": "Count"
+      },
+      "assetTypes": {
+        "video": "Videos",
+        "image": "Images",
+        "document": "Documents",
+        "audio": "Audio"
+      },
+      "legend": {
+        "assetsLabel": "{count} assets ({count}/{total})",
+        "assetsShort": "{count} assets"
+      }
+    },
+    "statusCards": {
+      "connection": {
+        "title": "Device Connection Status",
+        "description": "Online vs offline devices"
+      },
+      "update": {
+        "title": "Device Update Status",
+        "description": "Updated vs not updated devices"
+      }
+    },
+    "playlists": {
+      "cardTitle": "Recent Playlists",
+      "cardDescription": "Your recently created playlists",
+      "assetsCount": "{count} assets",
+      "edit": "Edit"
+    },
+    "devicesTable": {
+      "title": "Active Devices",
+      "subtitle": "Currently active devices in your network",
+      "columns": {
+        "name": "Name",
+        "type": "Type",
+        "status": "Status",
+        "os": "OS",
+        "registered": "Registered",
+        "actions": "Actions"
+      },
+      "loading": "Loading devices...",
+      "empty": "No devices found.",
+      "status": {
+        "true": "Active",
+        "false": "Inactive"
+      },
+      "actions": {
+        "view": "View"
+      }
+    }
+  },
+  "auth": {
+    "titles": {
+      "login": "Welcome Back",
+      "signup": "Create Account",
+      "forgot": "Reset Password"
+    },
+    "descriptions": {
+      "login": "Sign in to your Digital Signage account",
+      "signup": "Create a new account to get started",
+      "forgot": "Enter your email to receive a reset link"
+    },
+    "fields": {
+      "email": "Email",
+      "password": "Password",
+      "fullName": "Full Name",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "email": "name@example.com",
+      "password": "Enter your password",
+      "createPassword": "Create a password",
+      "confirmPassword": "Confirm your password",
+      "fullName": "John Doe"
+    },
+    "links": {
+      "forgot": "Forgot password?",
+      "signUp": "Sign up",
+      "signIn": "Sign in",
+      "backToLogin": "Back to login"
+    },
+    "inline": {
+      "noAccount": "Don’t have an account?",
+      "haveAccount": "Already have an account?"
+    },
+    "actions": {
+      "signIn": "Sign In",
+      "createAccount": "Create Account",
+      "sendReset": "Send Reset Link"
+    },
+    "toast": {
+      "loginSuccess": "Logged in successfully",
+      "passwordsDontMatch": "Passwords do not match",
+      "signupSuccess": "Account created successfully",
+      "resetTitle": "Password reset",
+      "resetDescription": "Password reset link sent to your email",
+      "invalidCredentials": "Invalid email or password"
+    },
+    "resetPassword": {
+      "title": "Reset your password",
+      "description": "Enter your new password below to complete the password reset.",
+      "newPasswordLabel": "New password",
+      "confirmPasswordLabel": "Confirm password",
+      "submitButton": "Reset password",
+      "successTitle": "Password reset",
+      "successDescription": "Your password has been successfully reset. You can now log in.",
+      "errorInvalid": "Invalid or expired token",
+      "errorMismatch": "Passwords do not match",
+      "toastSuccess": "Password successfully reset",
+      "toastError": "Something went wrong. Please try again."
+    }
+  },
+  "layout": {
+    "userMenu": {
+      "triggerLabel": "Open user menu",
+      "signedInAs": "Signed in as",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  },
+  "devices": {
+    "title": "Devices",
+    "subtitle": "Manage your connected devices",
+    "actions": {
+      "addDevice": "Add device"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "table": {
+      "title": "Active devices",
+      "subtitle": "{count} devices registered in the system",
+      "searchPlaceholder": "Search devices...",
+      "loading": "Loading devices...",
+      "empty": "No devices found.",
+      "pagination": "Showing {from} to {to} of {total} devices",
+      "paginationEmpty": "No devices to show",
+      "prev": "Previous",
+      "next": "Next",
+      "columns": {
+        "name": "Name",
+        "type": "Device type",
+        "os": "Operating system",
+        "date": "Registration date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "bulk": {
+        "selected": "{count, plural, one {# device selected} other {# devices selected}}",
+        "delete": "Delete selected",
+        "confirmTitle": "Delete selected devices?",
+        "confirmDescription": "Are you sure you want to delete {count} devices? This action cannot be undone.",
+        "confirm": "Delete",
+        "cancel": "Cancel",
+        "clearSelection": "Clear selection"
+      }
+    },
+    "delete": {
+      "title": "Delete device?",
+      "description": "Are you sure you want to delete the device \"{name}\"? This action cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    },
+    "breadcrumbs": {
+      "devices": "Devices"
+    },
+    "details": {
+      "loading": "Loading device...",
+      "title": "Edit device",
+      "tabs": {
+        "playlists": "Playlist group",
+        "details": "Details",
+        "playlistGroups": "Playlist groups"
+      },
+      "actions": {
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "save": "Save",
+        "edit": "Edit",
+        "saving": "Saving..."
+      },
+      "fields": {
+        "name": {
+          "label": "Name*"
+        },
+        "description": {
+          "label": "Device description"
+        },
+        "type": {
+          "label": "Device type*"
+        },
+        "os": {
+          "label": "Operating system*"
+        },
+        "screenResolution": {
+          "label": "Screen resolution*"
+        },
+        "screenOrientation": {
+          "label": "Screen orientation*"
+        },
+        "status": {
+          "label": "Status",
+          "activeLabel": "Active"
+        }
+      },
+      "messages": {
+        "updateSuccessDescription": "Device has been updated successfully.",
+        "updateErrorDescription": "Could not update the device. Please try again."
+      },
+      "playlists": {
+        "tableLabel": "Table with playlists",
+        "empty": "No playlists are assigned to this device yet.",
+        "columns": {
+          "name": "Name",
+          "duration": "Duration",
+          "creationDate": "Creation date",
+          "numAssets": "Number of assets",
+          "active": "Active"
+        }
+      }
+    },
+    "playlists": {
+      "availableTitle": "Available playlist groups",
+      "availableDescription": "Select which playlist group will be played on device",
+      "empty": "No playlists available.",
+      "previewTitle": "Preview playlist group",
+      "previewPlaceholder": "Playlist preview",
+      "loading": "Loading playlists..."
+    },
+    "playlistGroups": {
+      "title": "Playlist groups",
+      "description": "Select which playlist groups should be attached to this device.",
+      "empty": "No playlist groups available.",
+      "previewTitle": "Playlist group preview",
+      "meta": {
+        "duration": "Duration: {duration}",
+        "numPlaylists": "{count} playlists"
+      },
+      "playlistsTitle": "{count, plural, one {# playlist in group} other {# playlists in group}}",
+      "noPlaylistsInGroupHint": "No playlists are assigned to this group yet.",
+      "playlistMeta": {
+        "duration": "Duration: {duration}",
+        "assets": "{count, plural, one {# asset} other {# assets}}"
+      }
+    }
+  },
+  "languages": {
+    "en": "English",
+    "sr": "Serbian",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "it": "Italian",
+    "ru": "Russian",
+    "zh": "Chinese"
+  },
+  "assets": {
+    "title": "Assets",
+    "subtitle": "Browse and manage all uploaded assets",
+
+    "breadcrumbs": {
+      "dashboard": "Dashboard",
+      "assets": "Assets"
+    },
+
+    "table": {
+      "title": "Assets",
+      "subtitle": "Total {count} assets",
+      "searchPlaceholder": "Search assets...",
+      "searchButton": "Search",
+      "loading": "Loading assets…",
+      "empty": "No assets found.",
+      "error": "Assets could not be loaded.",
+      "clearSearch": "Clear search",
+
+      "columns": {
+        "asset": "Preview",
+        "name": "Name",
+        "assetType": "Asset type",
+        "format": "Format",
+        "size": "Size",
+        "quality": "Quality",
+        "uploadingDate": "Uploaded",
+        "active": "Active",
+        "tags": "Tags",
+        "actions": "Actions"
+      },
+
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      }
+    },
+
+    "download": {
+      "errorTitle": "Failed to download asset"
+    },
+
+    "delete": {
+      "confirmTitle": "Delete asset",
+      "confirmDescription": "Are you sure you want to delete this asset? This action is permanent and cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel",
+      "successTitle": "Asset deleted successfully",
+      "errorTitle": "Failed to delete asset"
+    },
+
+    "bulk": {
+      "selected": "Selected: {count}",
+      "clearSelection": "Clear selection",
+      "delete": "Delete selected",
+      "confirmDelete": "Are you sure you want to delete {count} selected assets? This action is permanent and cannot be undone.",
+      "successTitle": "Selected assets deleted successfully",
+      "errorTitle": "Failed to delete selected assets"
+    },
+
+    "upload": {
+      "button": "Upload assets",
+      "title": "Upload assets",
+      "description": "Drag and drop files or click to select.",
+      "dropLabel": "Drag files here or click to select",
+      "supportedTypes": "Supports images, video and documents",
+      "selectedFiles": "Selected files",
+      "toast": {
+        "selectedTitle": "Files selected",
+        "selectedDescription": "{count} files ready to upload",
+        "successTitle": "Upload complete",
+        "successDescription": "Your files have been uploaded successfully.",
+        "errorTitle": "Upload error",
+        "errorDescription": "Something went wrong while uploading your files."
+      },
+      "actions": {
+        "upload": "Upload asset",
+        "cancel": "Cancel",
+        "uploading": "Uploading…"
+      }
+    },
+
+    "actions": {
+      "upload": "Upload asset",
+      "cancel": "Cancel",
+      "uploading": "Uploading…",
+      "download": "Download"
+    },
+
+    "edit": {
+      "title": "Edit asset",
+      "subtitle": "Update asset information and translations",
+
+      "actions": {
+        "back": "Back",
+        "cancel": "Cancel",
+        "saveChanges": "Save changes",
+        "saving": "Saving...",
+        "edit": "Edit"
+      },
+
+      "sections": {
+        "details": {
+          "title": "Asset details"
+        },
+        "translations": {
+          "title": "Translations",
+          "addLanguage": "Add language",
+          "dialogTitle": "Add translation languages",
+          "dialogDescription": "Select languages you want to translate the description to",
+          "emptyTitle": "No translation languages selected",
+          "emptySubtitle": "Click \"Add language\" to get started"
+        }
+      },
+
+      "fields": {
+        "name": {
+          "label": "Asset name",
+          "placeholder": "Enter asset name"
+        },
+        "type": {
+          "label": "Type",
+          "placeholder": "Select type",
+          "options": {
+            "image": "Image",
+            "video": "Video",
+            "audio": "Audio",
+            "document": "Document"
+          }
+        },
+        "category": {
+          "label": "Category",
+          "placeholder": "Select category",
+          "options": {
+            "marketing": "Marketing",
+            "product": "Product",
+            "branding": "Branding",
+            "info": "Info"
+          }
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Select status",
+          "options": {
+            "active": "Active",
+            "inactive": "Inactive",
+            "archived": "Archived"
+          }
+        },
+        "format": {
+          "label": "Format"
+        },
+        "size": {
+          "label": "Size"
+        },
+        "sizeUnit": "MB",
+        "favorite": {
+          "add": "Add to favorites",
+          "remove": "Remove from favorites"
+        },
+        "tags": {
+          "label": "Tags",
+          "placeholder": "New tag",
+          "add": "Add tag"
+        },
+        "mainDescription": {
+          "label": "Main description",
+          "placeholder": "Add a description for this asset (used as base for translations)",
+          "helper": "This description will be used as the source for translations to other languages."
+        }
+      },
+
+      "tags": {
+        "added": "Tag added",
+        "removed": "Tag \"{tag}\" removed",
+        "alreadyExists": "Tag already exists",
+        "alreadyExistsDescription": "You have already added this tag."
+      },
+
+      "toasts": {
+        "updateSuccessTitle": "Asset updated",
+        "updateSuccessDescription": "Asset has been updated successfully.",
+        "updateErrorTitle": "Update failed",
+        "updateErrorDescription": "We couldn't update the asset. Please try again.",
+        "languageAddedTitle": "Language added",
+        "languageAddedDescription": "{lang} has been added to translations.",
+        "languageRemovedTitle": "Language removed",
+        "languageRemovedDescription": "Translation for {lang} has been removed.",
+        "addedToFavorites": "Added to favorites",
+        "removedFromFavorites": "Removed from favorites"
+      },
+
+      "translations": {
+        "noSourceDescription": "No main description",
+        "noSourceDescriptionHint": "Please add a main description before auto-translating.",
+        "autoTranslatePlaceholder": "Auto-translate placeholder applied",
+        "autoTranslatePlaceholderHint": "Main description was copied as a base translation for {lang}.",
+        "autoTranslateButton": "Auto-translate",
+        "textareaPlaceholder": "Enter {lang} translation or use auto-translate"
+      }
+    },
+
+    "preview": {
+      "title": "Asset preview",
+      "detailsTitle": "Asset details",
+
+      "tabs": {
+        "info": "Info",
+        "metadata": "Metadata",
+        "description": "Description"
+      },
+
+      "status": {
+        "deleted": "Deleted"
+      },
+
+      "tags": {
+        "empty": "No tags"
+      },
+
+      "fields": {
+        "dimensions": "Dimensions",
+        "uploadedBy": "Uploaded by",
+        "updatedBy": "Updated by",
+        "createdAt": "Created",
+        "updatedAt": "Last updated",
+        "orientation": "Orientation",
+        "path": "Path",
+        "thumbnailPath": "Thumbnail path",
+        "isDescriptionVisible": "Description visible",
+        "quality": "Quality"
+      },
+
+      "metadata": {
+        "assetId": "Asset ID",
+        "guid": "GUID",
+        "assetTypeId": "Asset Type ID",
+        "companyId": "Company ID"
+      },
+
+      "orientation": {
+        "landscape": "Landscape",
+        "portrait": "Portrait",
+        "square": "Square",
+        "unknown": "Unknown"
+      },
+
+      "boolean": {
+        "yes": "Yes",
+        "no": "No"
+      },
+
+      "description": {
+        "visible": "Visible",
+        "hidden": "Hidden",
+        "empty": "No description",
+        "add": "Add description"
+      },
+
+      "share": {
+        "successTitle": "Link copied",
+        "successDescription": "Asset link has been copied to clipboard.",
+        "errorTitle": "Unable to copy link"
+      },
+
+      "actions": {
+        "shareLink": "Copy share link",
+        "copyDirectUrl": "Copy direct URL",
+        "copyGuid": "Copy GUID",
+        "openInNewTab": "Open in new tab",
+        "crop": "Crop",
+        "adjustColors": "Adjust colors",
+        "regenerateThumbnail": "Regenerate thumbnail",
+        "shareAsset": "Share asset"
+      }
+    }
+  },
+  "table": {
+    "pagination": "Showing {from}–{to} of {total} devices",
+    "paginationEmpty": "No results",
+    "prev": "Previous",
+    "next": "Next",
+    "rowsPerPage": "Rows per page"
+  }
+}

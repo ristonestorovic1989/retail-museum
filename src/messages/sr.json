@@ -1,0 +1,579 @@
+{
+  "title": "Kontrolna tabla",
+  "subtitle": "Pregled uređaja, plejlista i sadržaja",
+  "dashboard": {
+    "statCard": {
+      "activeUsers": "Aktivni korisnici",
+      "totalDevices": "Ukupan broj uređaja",
+      "totalAssets": "Ukupan broj sadržaja",
+      "storageUsed": "Iskorišćen prostor"
+    },
+    "badges": {
+      "active": "Aktivan",
+      "online": "Na mreži",
+      "offline": "Van mreže",
+      "updated": "Ažurirani",
+      "notUpdated": "Neažurirani"
+    },
+    "hints": {
+      "devicesUpdated": "{percent}% ažurirano",
+      "assetsKinds": "Video, slike i ostalo",
+      "assetsPublished": "{published} objavljeno, {archived} arhivirano",
+      "storageUsage": "{percent}% od {total}"
+    },
+    "tabs": {
+      "activeDevices": "Aktivni uređaji",
+      "recentPlaylists": "Skorašnje plejliste",
+      "latestAssets": "Najnoviji sadržaji"
+    },
+    "placeholders": {
+      "recentPlaylists": "Placeholder za skorašnje plejliste…",
+      "latestAssets": "Placeholder za najnovije sadržaje…"
+    },
+    "assetsDistribution": {
+      "title": "Distribucija sadržaja",
+      "description": "Raspodela sadržaja po tipu",
+      "series": {
+        "count": "Broj"
+      },
+      "assetTypes": {
+        "video": "Video",
+        "image": "Slike",
+        "document": "Dokumenti",
+        "audio": "Audio"
+      },
+      "legend": {
+        "assetsLabel": "{count} sadržaja ({count}/{total})",
+        "assetsShort": "{count} sadržaja"
+      }
+    },
+    "statusCards": {
+      "connection": {
+        "title": "Status konekcije uređaja",
+        "description": "Uređaji na mreži naspram onih van mreže"
+      },
+      "update": {
+        "title": "Status ažuriranosti uređaja",
+        "description": "Ažurirani naspram neažuriranih uređaja"
+      }
+    },
+    "playlists": {
+      "cardTitle": "Skorašnje plejliste",
+      "cardDescription": "Vaše nedavno kreirane plejliste",
+      "assetsCount": "{count} sadržaja",
+      "edit": "Izmeni"
+    },
+    "devicesTable": {
+      "title": "Aktivni uređaji",
+      "subtitle": "Trenutno aktivni uređaji u vašoj mreži",
+      "columns": {
+        "name": "Naziv",
+        "type": "Tip",
+        "status": "Status",
+        "os": "OS",
+        "registered": "Registrovan",
+        "actions": "Akcije"
+      },
+      "loading": "Učitavanje uređaja...",
+      "empty": "Nema pronađenih uređaja.",
+      "status": {
+        "true": "Aktivan",
+        "false": "Neaktivan"
+      },
+      "actions": {
+        "view": "Prikaži"
+      }
+    }
+  },
+  "auth": {
+    "titles": {
+      "login": "Dobrodošli nazad",
+      "signup": "Kreiraj nalog",
+      "forgot": "Resetuj lozinku"
+    },
+    "descriptions": {
+      "login": "Prijavite se na svoj Digital Signage nalog",
+      "signup": "Kreirajte novi nalog da biste počeli",
+      "forgot": "Unesite svoj email da biste dobili link za reset lozinke"
+    },
+    "fields": {
+      "email": "Email",
+      "password": "Lozinka",
+      "fullName": "Ime i prezime",
+      "confirmPassword": "Potvrda lozinke"
+    },
+    "placeholders": {
+      "email": "ime@primer.com",
+      "password": "Unesite lozinku",
+      "createPassword": "Kreirajte lozinku",
+      "confirmPassword": "Potvrdite lozinku",
+      "fullName": "Petar Petrović"
+    },
+    "links": {
+      "forgot": "Zaboravljena lozinka?",
+      "signUp": "Registruj se",
+      "signIn": "Prijavi se",
+      "backToLogin": "Nazad na prijavu"
+    },
+    "inline": {
+      "noAccount": "Nemate nalog?",
+      "haveAccount": "Već imate nalog?"
+    },
+    "actions": {
+      "signIn": "Prijava",
+      "createAccount": "Kreiraj nalog",
+      "sendReset": "Pošalji link za reset"
+    },
+    "toast": {
+      "loginSuccess": "Uspešno ste se prijavili",
+      "passwordsDontMatch": "Lozinke se ne poklapaju",
+      "signupSuccess": "Nalog je uspešno kreiran",
+      "resetTitle": "Reset lozinke",
+      "resetDescription": "Link za reset lozinke je poslat na vaš email",
+      "invalidCredentials": "Pogrešan email ili lozinka"
+    },
+    "resetPassword": {
+      "title": "Resetujte lozinku",
+      "description": "Unesite novu lozinku kako biste završili proces resetovanja.",
+      "newPasswordLabel": "Nova lozinka",
+      "confirmPasswordLabel": "Potvrda lozinke",
+      "submitButton": "Resetuj lozinku",
+      "successTitle": "Lozinka je resetovana",
+      "successDescription": "Vaša lozinka je uspešno promenjena. Sada možete da se prijavite.",
+      "errorInvalid": "Neispravan ili istekao token",
+      "errorMismatch": "Lozinke se ne poklapaju",
+      "toastSuccess": "Lozinka je uspešno resetovana",
+      "toastError": "Došlo je do greške. Pokušajte ponovo."
+    }
+  },
+  "layout": {
+    "userMenu": {
+      "triggerLabel": "Otvori korisnički meni",
+      "signedInAs": "Prijavljeni ste kao",
+      "profile": "Profil",
+      "settings": "Podešavanja",
+      "logout": "Odjava"
+    }
+  },
+  "devices": {
+    "title": "Uređaji",
+    "subtitle": "Upravljajte povezanim uređajima",
+    "actions": {
+      "addDevice": "Dodaj uređaj"
+    },
+    "status": {
+      "active": "Aktivan",
+      "inactive": "Neaktivan"
+    },
+    "table": {
+      "title": "Aktivni uređaji",
+      "subtitle": "{count} uređaja registrovanih u sistemu",
+      "searchPlaceholder": "Pretraži uređaje...",
+      "loading": "Učitavanje uređaja...",
+      "empty": "Nijedan uređaj nije pronađen.",
+      "pagination": "Prikazano {from}–{to} od ukupno {total} uređaja",
+      "paginationEmpty": "Nema uređaja za prikaz",
+      "prev": "Prethodna",
+      "next": "Sledeća",
+      "columns": {
+        "name": "Naziv",
+        "type": "Tip uređaja",
+        "os": "Operativni sistem",
+        "date": "Datum registracije",
+        "status": "Status",
+        "actions": "Akcije"
+      },
+      "bulk": {
+        "selected": "{count, plural, one {# uređaj izabran} few {# uređaja izabrana} other {# uređaja izabrano}}",
+        "delete": "Obriši izabrane",
+        "confirmTitle": "Obrisati izabrane uređaje?",
+        "confirmDescription": "Da li ste sigurni da želite da obrišete {count} uređaja? Ova radnja je trajna i ne može se poništiti.",
+        "confirm": "Obriši",
+        "cancel": "Otkaži",
+        "clearSelection": "Poništi izbor"
+      }
+    },
+    "delete": {
+      "title": "Obrisati uređaj?",
+      "description": "Da li ste sigurni da želite da obrišete uređaj „{name}“? Ova radnja je trajna i ne može se poništiti.",
+      "confirm": "Obriši",
+      "cancel": "Otkaži"
+    },
+    "breadcrumbs": {
+      "devices": "Uređaji"
+    },
+    "details": {
+      "loading": "Učitavanje uređaja...",
+      "title": "Izmena uređaja",
+      "tabs": {
+        "playlists": "Grupa plejlista",
+        "details": "Detalji",
+        "playlistGroups": "Grupe plejlista"
+      },
+      "actions": {
+        "delete": "Obriši",
+        "cancel": "Otkaži",
+        "save": "Sačuvaj",
+        "edit": "Izmeni",
+        "saving": "Čuvanje..."
+      },
+      "fields": {
+        "name": {
+          "label": "Naziv*"
+        },
+        "description": {
+          "label": "Opis uređaja"
+        },
+        "type": {
+          "label": "Tip uređaja*"
+        },
+        "os": {
+          "label": "Operativni sistem*"
+        },
+        "screenResolution": {
+          "label": "Rezolucija ekrana*"
+        },
+        "screenOrientation": {
+          "label": "Orijentacija ekrana*"
+        },
+        "status": {
+          "label": "Status",
+          "activeLabel": "Aktivan"
+        }
+      },
+      "messages": {
+        "updateSuccessDescription": "Uređaj je uspešno ažuriran.",
+        "updateErrorDescription": "Nismo mogli da ažuriramo uređaj. Pokušajte ponovo."
+      },
+      "playlists": {
+        "tableLabel": "Tabela sa plejlistama",
+        "empty": "Još uvek nema dodeljenih plejlista za ovaj uređaj.",
+        "columns": {
+          "name": "Naziv",
+          "duration": "Trajanje",
+          "creationDate": "Datum kreiranja",
+          "numAssets": "Broj aseta",
+          "active": "Aktivna"
+        }
+      }
+    },
+    "playlists": {
+      "availableTitle": "Dostupne grupe plejlista",
+      "availableDescription": "Izaberite koja grupa plejlista će se puštati na uređaju",
+      "empty": "Nema dostupnih plejlista.",
+      "previewTitle": "Pregled grupe plejlista",
+      "previewPlaceholder": "Pregled plejlista",
+      "loading": "Učitavanje plejlista..."
+    },
+    "playlistGroups": {
+      "title": "Grupe plejlista",
+      "description": "Izaberite koje grupe plejlista treba da budu dodeljene ovom uređaju.",
+      "empty": "Nema dostupnih grupa plejlista.",
+      "previewTitle": "Pregled grupe plejlista",
+      "meta": {
+        "duration": "Trajanje: {duration}",
+        "numPlaylists": "{count, plural, one {# plejlista} few {# plejliste} other {# plejlista}}"
+      },
+      "playlistsTitle": "{count, plural, one {# plejlista u grupi} few {# plejliste u grupi} other {# plejlista u grupi}}",
+      "noPlaylistsInGroupHint": "Ovoj grupi još uvek nisu dodeljene plejliste.",
+      "playlistMeta": {
+        "duration": "Trajanje: {duration}",
+        "assets": "{count, plural, one {# aset} few {# aseta} other {# aseta}}"
+      }
+    }
+  },
+  "languages": {
+    "en": "Engleski",
+    "sr": "Srpski",
+    "de": "Nemački",
+    "fr": "Francuski",
+    "es": "Španski",
+    "it": "Italijanski",
+    "ru": "Ruski",
+    "zh": "Kineski"
+  },
+  "assets": {
+    "title": "Resursi",
+    "subtitle": "Pregledaj i upravljaj svim otpremljenim resursima",
+
+    "breadcrumbs": {
+      "dashboard": "Kontrolna tabla",
+      "assets": "Resursi"
+    },
+
+    "table": {
+      "title": "Resursi",
+      "subtitle": "Ukupno {count} resursa",
+      "searchPlaceholder": "Pretraži resurse...",
+      "searchButton": "Pretraži",
+      "loading": "Učitavanje resursa…",
+      "empty": "Nema pronađenih resursa.",
+      "error": "Resursi nisu mogli da se učitaju.",
+      "clearSearch": "Obriši pretragu",
+
+      "columns": {
+        "asset": "Pregled",
+        "name": "Naziv",
+        "assetType": "Tip resursa",
+        "format": "Format",
+        "size": "Veličina",
+        "quality": "Kvalitet",
+        "uploadingDate": "Otpremљено",
+        "active": "Aktivan",
+        "tags": "Tagovi",
+        "actions": "Akcije"
+      },
+
+      "status": {
+        "active": "Aktivan",
+        "inactive": "Neaktivan"
+      }
+    },
+
+    "download": {
+      "errorTitle": "Preuzimanje resursa nije uspelo"
+    },
+
+    "delete": {
+      "confirmTitle": "Brisanje resursa",
+      "confirmDescription": "Da li sigurno želiš da obrišeš ovaj resurs? Ova akcija je trajna i ne može se opozvati.",
+      "confirm": "Obriši",
+      "cancel": "Otkaži",
+      "successTitle": "Resurs je uspešno obrisan",
+      "errorTitle": "Brisanje resursa nije uspelo"
+    },
+
+    "bulk": {
+      "selected": "Izabrano: {count}",
+      "clearSelection": "Poništi izbor",
+      "delete": "Obriši izabrane",
+      "confirmDelete": "Da li sigurno želiš da obrišeš {count} izabranih resursa? Ova akcija je trajna i ne može se opozvati.",
+      "successTitle": "Izabrani resursi su uspešno obrisani",
+      "errorTitle": "Brisanje izabranih resursa nije uspelo"
+    },
+
+    "upload": {
+      "button": "Otpremi resurse",
+      "title": "Otpremi resurse",
+      "description": "Prevuci fajlove ili klikni da izabereš.",
+      "dropLabel": "Prevuci fajlove ovde ili klikni da izabereš",
+      "supportedTypes": "Podržane slike, video zapisi i dokumenti",
+      "selectedFiles": "Izabrani fajlovi",
+      "toast": {
+        "selectedTitle": "Fajlovi izabrani",
+        "selectedDescription": "{count} fajlova spremno za otpremanje",
+        "successTitle": "Otpremanje završeno",
+        "successDescription": "Tvoji fajlovi su uspešno otpremljeni.",
+        "errorTitle": "Greška pri otpremanju",
+        "errorDescription": "Došlo je do greške tokom otpremanja fajlova."
+      },
+      "actions": {
+        "upload": "Otpremi resurs",
+        "cancel": "Otkaži",
+        "uploading": "Otpremanje…"
+      }
+    },
+
+    "actions": {
+      "upload": "Otpremi resurs",
+      "cancel": "Otkaži",
+      "uploading": "Otpremanje…",
+      "download": "Preuzmi"
+    },
+
+    "edit": {
+      "title": "Izmena resursa",
+      "subtitle": "Ažuriraj informacije o resursu i prevode",
+
+      "actions": {
+        "back": "Nazad",
+        "cancel": "Otkaži",
+        "saveChanges": "Sačuvaj izmene",
+        "saving": "Čuvanje...",
+        "edit": "Izmeni"
+      },
+
+      "sections": {
+        "details": {
+          "title": "Detalji resursa"
+        },
+        "translations": {
+          "title": "Prevodi",
+          "addLanguage": "Dodaj jezik",
+          "dialogTitle": "Dodaj jezike za prevod",
+          "dialogDescription": "Izaberi jezike na koje želiš da prevedeš opis",
+          "emptyTitle": "Nema izabranih jezika za prevod",
+          "emptySubtitle": "Klikni na \"Dodaj jezik\" da započneš"
+        }
+      },
+
+      "fields": {
+        "name": {
+          "label": "Naziv resursa",
+          "placeholder": "Unesi naziv resursa"
+        },
+        "type": {
+          "label": "Tip",
+          "placeholder": "Izaberi tip",
+          "options": {
+            "image": "Slika",
+            "video": "Video",
+            "audio": "Audio",
+            "document": "Dokument"
+          }
+        },
+        "category": {
+          "label": "Kategorija",
+          "placeholder": "Izaberi kategoriju",
+          "options": {
+            "marketing": "Marketing",
+            "product": "Proizvod",
+            "branding": "Brending",
+            "info": "Informacije"
+          }
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Izaberi status",
+          "options": {
+            "active": "Aktivan",
+            "inactive": "Neaktivan",
+            "archived": "Arhivirano"
+          }
+        },
+        "format": {
+          "label": "Format"
+        },
+        "size": {
+          "label": "Veličina"
+        },
+        "sizeUnit": "MB",
+        "favorite": {
+          "add": "Dodaj u omiljene",
+          "remove": "Ukloni iz omiljenih"
+        },
+        "tags": {
+          "label": "Tagovi",
+          "placeholder": "Novi tag",
+          "add": "Dodaj tag"
+        },
+        "mainDescription": {
+          "label": "Glavni opis",
+          "placeholder": "Dodaj opis za ovaj resurs (koristi se kao baza za prevode)",
+          "helper": "Ovaj opis će biti korišćen kao izvor za prevode na druge jezike."
+        }
+      },
+
+      "tags": {
+        "added": "Tag je dodat",
+        "removed": "Tag \"{tag}\" je uklonjen",
+        "alreadyExists": "Tag već postoji",
+        "alreadyExistsDescription": "Ovaj tag je već dodat."
+      },
+
+      "toasts": {
+        "updateSuccessTitle": "Resurs ažuriran",
+        "updateSuccessDescription": "Resurs je uspešno ažuriran.",
+        "updateErrorTitle": "Ažuriranje nije uspelo",
+        "updateErrorDescription": "Nismo mogli da ažuriramo resurs. Pokušaj ponovo.",
+        "languageAddedTitle": "Jezik dodat",
+        "languageAddedDescription": "{lang} je dodat u listu prevoda.",
+        "languageRemovedTitle": "Jezik uklonjen",
+        "languageRemovedDescription": "Prevod za {lang} je uklonjen.",
+        "addedToFavorites": "Dodat u omiljene",
+        "removedFromFavorites": "Uklonjen iz omiljenih"
+      },
+
+      "translations": {
+        "noSourceDescription": "Nema glavnog opisa",
+        "noSourceDescriptionHint": "Dodaj glavni opis pre automatskog prevođenja.",
+        "autoTranslatePlaceholder": "Primеnjen placeholder za automatski prevod",
+        "autoTranslatePlaceholderHint": "Glavni opis je kopiran kao osnovni prevod za {lang}.",
+        "autoTranslateButton": "Auto-prevod",
+        "textareaPlaceholder": "Unesi prevod za {lang} ili koristi auto-prevod"
+      }
+    },
+
+    "preview": {
+      "title": "Pregled resursa",
+      "detailsTitle": "Detalji resursa",
+
+      "tabs": {
+        "info": "Info",
+        "metadata": "Metapodaci",
+        "description": "Opis"
+      },
+
+      "status": {
+        "deleted": "Obrisano"
+      },
+
+      "tags": {
+        "empty": "Nema tagova"
+      },
+
+      "fields": {
+        "dimensions": "Dimenzije",
+        "uploadedBy": "Postavio",
+        "updatedBy": "Ažurirao",
+        "createdAt": "Kreirano",
+        "updatedAt": "Poslednje ažuriranje",
+        "orientation": "Orijentacija",
+        "path": "Putanja",
+        "thumbnailPath": "Putanja thumbnail slike",
+        "isDescriptionVisible": "Opis je vidljiv",
+        "quality": "Kvalitet"
+      },
+
+      "metadata": {
+        "assetId": "ID resursa",
+        "guid": "GUID",
+        "assetTypeId": "ID tipa resursa",
+        "companyId": "ID kompanije"
+      },
+
+      "orientation": {
+        "landscape": "Horizontalno",
+        "portrait": "Vertikalno",
+        "square": "Kvadrat",
+        "unknown": "Nepoznato"
+      },
+
+      "boolean": {
+        "yes": "Da",
+        "no": "Ne"
+      },
+
+      "description": {
+        "visible": "Vidljiv",
+        "hidden": "Skriven",
+        "empty": "Nema opisa",
+        "add": "Dodaj opis"
+      },
+
+      "share": {
+        "successTitle": "Link je kopiran",
+        "successDescription": "Link resursa je kopiran u clipboard.",
+        "errorTitle": "Nije moguće kopirati link"
+      },
+
+      "actions": {
+        "shareLink": "Kopiraj link za deljenje",
+        "copyDirectUrl": "Kopiraj direktan URL",
+        "copyGuid": "Kopiraj GUID",
+        "openInNewTab": "Otvori u novom tabu",
+        "crop": "Iseci",
+        "adjustColors": "Podesi boje",
+        "regenerateThumbnail": "Ponovo generiši thumbnail",
+        "shareAsset": "Podeli resurs"
+      }
+    }
+  },
+  "table": {
+    "pagination": "Prikaz {from}–{to} od {total} uređaja",
+    "paginationEmpty": "Nema rezultata",
+    "prev": "Prethodna",
+    "next": "Sledeća",
+    "rowsPerPage": "Redova po stranici"
+  }
+}

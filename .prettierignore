@@ -1,0 +1,7 @@
+.next
+.ignored_node_modules
+node_modules
+dist
+build
+coverage
+public

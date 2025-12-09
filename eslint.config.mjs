@@ -1,18 +1,62 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import importPlugin from 'eslint-plugin-import';
+import unusedImports from 'eslint-plugin-unused-imports';
+import nextPlugin from '@next/eslint-plugin-next';
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-]);
+export default [
+  {
+    ignores: ['.next/**', 'node_modules/**', 'dist/**', 'build/**', 'coverage/**', 'public/**'],
+  },
 
-export default eslintConfig;
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  nextPlugin.configs['core-web-vitals'],
+
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      import: importPlugin,
+      'unused-imports': unusedImports,
+    },
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    settings: {
+      'import/resolver': { typescript: true, node: true },
+    },
+    rules: {
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+
+      'import/order': [
+        'warn',
+        {
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index'], 'type'],
+          pathGroups: [
+            { pattern: 'react', group: 'external', position: 'before' },
+            { pattern: '@/**', group: 'internal' },
+          ],
+          pathGroupsExcludedImportTypes: ['react'],
+        },
+      ],
+
+      'react/react-in-jsx-scope': 'off',
+      '@next/next/no-img-element': 'off',
+    },
+  },
+
+  {
+    files: ['tailwind.config.{js,cjs,ts,mjs}', 'postcss.config.{js,cjs,ts,mjs}'],
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
+  },
+];
