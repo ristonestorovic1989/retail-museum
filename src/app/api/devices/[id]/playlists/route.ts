@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { apiFetch } from '@/lib/http/server';
-import { DevicePlaylistsResponse, UpdateDevicePlaylistsPayload } from '@/features/devices/types';
+import { DevicePlaylistsResponse, UpdateDevicePayload } from '@/features/devices/types';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 type RouteParams = {
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<Route
     return new NextResponse('Unauthorized', { status: 401 });
   }
 
-  const payload = (await req.json()) as UpdateDevicePlaylistsPayload;
+  const payload = (await req.json()) as UpdateDevicePayload;
 
   await apiFetch<void>(`/api/devices/${id}/playlists`, {
     accessToken: session.accessToken,

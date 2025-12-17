@@ -34,8 +34,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<Rout
 
   const payload = (await req.json()) as UpdateDevicePayload;
 
-  console.log(payload, 'payload');
-
   const updated = await apiFetch<DeviceDetails>(`/api/devices/${id}`, {
     accessToken: session.accessToken,
     method: 'PATCH',

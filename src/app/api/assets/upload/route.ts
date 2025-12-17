@@ -50,8 +50,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  console.log('[TUS PROXY] POST /api/assets/upload →', tusBase);
-
   const upstreamHeaders = buildUpstreamHeaders(req, session.accessToken as string);
 
   const init: NodeRequestInit = {
@@ -63,14 +61,11 @@ export async function POST(req: NextRequest) {
 
   const upstreamRes = await fetch(tusBase, init);
 
-  console.log('[TUS PROXY] Upstream POST status:', upstreamRes.status);
-
   const resHeaders = new Headers();
   const tusHeader = upstreamRes.headers.get('Tus-Resumable');
   if (tusHeader) resHeaders.set('Tus-Resumable', tusHeader);
 
   let upstreamLocation = upstreamRes.headers.get('Location') ?? '';
-  console.log('[TUS PROXY] Upstream Location:', upstreamLocation);
 
   if (!upstreamRes.ok) {
     const txt = await upstreamRes.text().catch(() => '');
@@ -96,13 +91,10 @@ export async function POST(req: NextRequest) {
     locationPath = `/${locationPath}`;
   }
 
-  console.log('[TUS PROXY] Normalized Location path:', locationPath);
-
   const encodedPath = encodeURIComponent(locationPath);
   const proxyLocation = `/api/assets/upload/${encodedPath}`;
 
   resHeaders.set('Location', proxyLocation);
-  console.log('[TUS PROXY] Rewriting Location →', proxyLocation);
 
   return new NextResponse(null, {
     status: upstreamRes.status,

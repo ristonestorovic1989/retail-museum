@@ -13,8 +13,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    console.log('[delete-bulk] incoming body from client:', { ids });
-
     if (!Array.isArray(ids) || ids.length === 0) {
       return NextResponse.json({ message: 'No ids provided' }, { status: 400 });
     }

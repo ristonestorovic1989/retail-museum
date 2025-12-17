@@ -217,6 +217,10 @@
         "edit": "Edit",
         "saving": "Saving..."
       },
+      "sections": {
+        "basicInfo": "Basic information",
+        "playlistsTable": "Playlists table"
+      },
       "fields": {
         "name": {
           "label": "Name*"
@@ -248,6 +252,7 @@
       "playlists": {
         "tableLabel": "Table with playlists",
         "empty": "No playlists are assigned to this device yet.",
+        "count": "{count, plural, one {# playlist} other {# playlists}}",
         "columns": {
           "name": "Name",
           "duration": "Duration",
@@ -270,6 +275,7 @@
       "description": "Select which playlist groups should be attached to this device.",
       "empty": "No playlist groups available.",
       "previewTitle": "Playlist group preview",
+      "previewPlaceholder": "Select a playlist group to see its preview here.",
       "meta": {
         "duration": "Duration: {duration}",
         "numPlaylists": "{count} playlists"
@@ -391,6 +397,9 @@
         "saveChanges": "Save changes",
         "saving": "Saving...",
         "edit": "Edit"
+      },
+      "breadcrumbs": {
+        "assets": "Assets"
       },
 
       "sections": {

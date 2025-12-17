@@ -50,6 +50,7 @@ export type AssetListItem = {
   assetTypeId: AssetTypeId;
   companyId: number;
   tags: string[];
+  descriptionTranslations?: DescriptionTranslations;
 };
 
 export type AssetsApiResponse = {
@@ -93,6 +94,8 @@ export type EditableAsset = AssetDetails & {
   favorite: boolean;
 };
 
+export type DescriptionTranslations = Record<string, string>;
+
 export type UpdateAssetRequest = {
   name: string;
   description: string;
@@ -100,6 +103,7 @@ export type UpdateAssetRequest = {
   archived: boolean;
   active: boolean;
   tagsCsv: string;
+  descriptionTranslations: DescriptionTranslations;
 };
 
 export function mapAssetDetailsToEditable(asset: AssetDetails): EditableAsset {
@@ -135,6 +139,7 @@ export function mapAssetDetailsToEditable(asset: AssetDetails): EditableAsset {
 export function mapEditableToUpdateRequest(
   asset: EditableAsset,
   mainDescription: string,
+  translations: DescriptionTranslations,
 ): UpdateAssetRequest {
   const desc = mainDescription || asset.description || '';
 
@@ -145,6 +150,7 @@ export function mapEditableToUpdateRequest(
     archived: asset.status === 'Archived',
     active: asset.status === 'Active',
     tagsCsv: asset.tags.join(','),
+    descriptionTranslations: translations, // 👈 bitna linija
   };
 }
 
@@ -155,6 +161,7 @@ export type AssetEditViewModel = {
   size: number;
   dateOfUploadingFormatted: string;
   tags: string[];
+  descriptionTranslations?: DescriptionTranslations;
   previewUrl: string | null;
   status: AssetStatus;
   type: AssetType;
@@ -166,3 +173,12 @@ export enum AssetOrientation {
   Square = 'square',
   Unknown = 'unknown',
 }
+
+export type TranslateRequest = {
+  langs: string[];
+  text: string;
+};
+
+export type TranslateResponse = {
+  translations: Record<string, string>;
+};

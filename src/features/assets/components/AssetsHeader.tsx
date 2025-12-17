@@ -43,7 +43,7 @@ export function AssetsHeader({
           <div className="mt-2 inline-flex items-center gap-1 rounded-md border p-1">
             <Button
               type="button"
-              variant={viewMode === 'table' ? 'secondary' : 'ghost'}
+              variant={viewMode === 'table' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => onViewModeChange('table')}
             >
@@ -51,7 +51,7 @@ export function AssetsHeader({
             </Button>
             <Button
               type="button"
-              variant={viewMode === 'grid' ? 'secondary' : 'ghost'}
+              variant={viewMode === 'grid' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => onViewModeChange('grid')}
             >

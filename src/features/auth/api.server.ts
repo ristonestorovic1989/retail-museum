@@ -77,7 +77,6 @@ export async function forgotPasswordServer(payload: ForgotPasswordPayload) {
 }
 
 export async function resetPasswordServer(payload: ResetPasswordPayload) {
-  console.log('[resetPasswordServer] payload for backend =', payload);
   await apiFetch<void>('/api/auth/reset-password', {
     method: 'POST',
     body: payload,

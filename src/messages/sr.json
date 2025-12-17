@@ -217,6 +217,10 @@
         "edit": "Izmeni",
         "saving": "Čuvanje..."
       },
+      "sections": {
+        "basicInfo": "Osnovne informacije",
+        "playlistsTable": "Tabela plejlisti"
+      },
       "fields": {
         "name": {
           "label": "Naziv*"
@@ -248,6 +252,7 @@
       "playlists": {
         "tableLabel": "Tabela sa plejlistama",
         "empty": "Još uvek nema dodeljenih plejlista za ovaj uređaj.",
+        "count": "{count, plural, one {# plejlista} few {# plejliste} other {# plejlisti}}",
         "columns": {
           "name": "Naziv",
           "duration": "Trajanje",
@@ -270,6 +275,7 @@
       "description": "Izaberite koje grupe plejlista treba da budu dodeljene ovom uređaju.",
       "empty": "Nema dostupnih grupa plejlista.",
       "previewTitle": "Pregled grupe plejlista",
+      "previewPlaceholder": "Izaberi grupu plejlisti da vidiš prikaz ovde.",
       "meta": {
         "duration": "Trajanje: {duration}",
         "numPlaylists": "{count, plural, one {# plejlista} few {# plejliste} other {# plejlista}}"
@@ -391,6 +397,9 @@
         "saveChanges": "Sačuvaj izmene",
         "saving": "Čuvanje...",
         "edit": "Izmeni"
+      },
+      "breadcrumbs": {
+        "assets": "Aseti"
       },
 
       "sections": {

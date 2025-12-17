@@ -115,10 +115,8 @@ export function AssetsUploadDialog({ t, open, onOpenChange, onUploaded, companyI
             },
             onProgress(bytesSent, bytesTotal) {
               const progress = ((bytesSent / bytesTotal) * 100).toFixed(1);
-              console.log(`Uploading ${file.name}: ${progress}%`);
             },
             onSuccess() {
-              console.log('Upload finished for', file.name);
               resolve();
             },
           });

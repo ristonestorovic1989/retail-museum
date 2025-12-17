@@ -51,7 +51,6 @@ export const AssetPreviewInfoPanel = ({
           <AssetPreviewActionsDropdown
             asset={asset}
             t={t}
-            onEdit={onEdit}
             onDelete={onDelete}
             onDownload={onDownload}
             onShare={onShare}

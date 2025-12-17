@@ -50,7 +50,6 @@ export async function GET(_req: NextRequest, context: { params: Promise<{ id: st
   const normalizedPath = decodedPath.startsWith('/') ? decodedPath : `/${decodedPath}`;
 
   const upstreamUrl = `${upstreamOrigin}${normalizedPath}`;
-  console.log('[TUS PROXY] GET debug →', upstreamUrl);
 
   return NextResponse.json({
     message: 'OK from /api/assets/upload/[id]',
@@ -71,7 +70,6 @@ export async function HEAD(req: NextRequest, context: { params: Promise<{ id: st
   }
 
   const upstreamUrl = `${upstreamOrigin}${normalizedPath}`;
-  console.log('[TUS PROXY] HEAD →', upstreamUrl);
 
   const upstreamHeaders = buildUpstreamHeaders(req, session.accessToken as string);
 
@@ -103,7 +101,6 @@ export async function PATCH(req: NextRequest, context: { params: Promise<{ id: s
   }
 
   const upstreamUrl = `${upstreamOrigin}${normalizedPath}`;
-  console.log('[TUS PROXY] PATCH →', upstreamUrl);
 
   const upstreamHeaders = buildUpstreamHeaders(req, session.accessToken as string);
 

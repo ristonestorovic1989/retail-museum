@@ -12,11 +12,11 @@ import {
   DeviceStatus,
   DevicesQueryParams,
   DeviceDetailsApiResponse,
-  PlaylistSummary,
   PlaylistGroupSummary,
   PlaylistAssetPreview,
 } from './types';
 import { clientFetch } from '@/lib/http/client';
+import { PlaylistSummary } from '../playlists/types';
 
 const DEVICES_QK = ['devices'];
 const DEVICE_QK = (id: number | string) => ['devices', id];
@@ -41,6 +41,8 @@ function mapDeviceDetails(res: DeviceDetailsApiResponse): DeviceDetails {
         id: p.id,
         name: p.name,
         duration: p.duration,
+        imageDuration: p.imageDuration,
+        tags: p.tags ?? [],
         dateOfCreation: p.dateOfCreation,
         numAssets: p.numberOfAssets,
         active: true,

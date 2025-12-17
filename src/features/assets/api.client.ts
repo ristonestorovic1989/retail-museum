@@ -12,6 +12,8 @@ import type {
   AssetsResult,
   UploadAssets,
   UpdateAssetRequest,
+  TranslateResponse,
+  TranslateRequest,
 } from './types';
 
 function mapAsset(item: AssetListItemApi): AssetListItem {
@@ -118,6 +120,18 @@ async function updateAsset(id: number, body: UpdateAssetRequest): Promise<void> 
   });
 }
 
+async function translateText(body: TranslateRequest): Promise<Record<string, string>> {
+  const res = await clientFetch<TranslateResponse>('/api/assets/translate', {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return res.translations;
+}
+
 export function useAssetsQuery(params: AssetsQueryParams) {
   return useQuery({
     queryKey: ['assets', params],
@@ -186,5 +200,11 @@ export function useUpdateAssetMutation() {
       queryClient.invalidateQueries({ queryKey: ['assets'] });
       queryClient.invalidateQueries({ queryKey: ['assets', vars.id] });
     },
+  });
+}
+
+export function useTranslateTextMutation() {
+  return useMutation({
+    mutationFn: (body: TranslateRequest) => translateText(body),
   });
 }

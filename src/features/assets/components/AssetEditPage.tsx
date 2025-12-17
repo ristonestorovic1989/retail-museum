@@ -93,6 +93,7 @@ export default function AssetEditPage({ assetId }: Props) {
         archived,
         active,
         tagsCsv: asset.tags.length ? asset.tags.join(',') : '',
+        descriptionTranslations: translations,
       };
 
       await updateMutation.mutateAsync({ id: asset.id, body });
@@ -124,7 +125,7 @@ export default function AssetEditPage({ assetId }: Props) {
       onSave={handleSave}
       onCancel={handleCancel}
       initialMainDescription={data.description ?? ''}
-      // initialTranslations za kasnije kad backend bude imao podršku
+      initialTranslations={data.descriptionTranslations ?? {}}
     />
   );
 }

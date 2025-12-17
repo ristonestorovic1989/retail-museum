@@ -1,3 +1,5 @@
+import { PlaylistSummary } from '../playlists/types';
+
 export enum DeviceStatus {
   Active = 'active',
   Inactive = 'inactive',
@@ -54,7 +56,7 @@ export type DeviceDetailsApiResponse = {
   deviceTypeName: string;
   active: boolean;
   registrationDate: string;
-  assignedPlaylist: unknown[];
+  assignedPlaylist: PlaylistSummary[];
   playlistDetails: {
     id: number;
     name: string | null;
@@ -77,24 +79,10 @@ export type DeviceDetailsApiResponse = {
   }[];
 };
 
-export type PlaylistSummary = {
-  id: number;
-  name: string;
-  duration: string;
-  dateOfCreation?: string;
-  numAssets: number;
-  active: boolean;
-  assetIds?: number[];
-  imageUrl?: string | null;
-  backgroundUrl?: string | null;
-};
-
 export type PlaylistAssetPreview = {
   id: number;
-  name: string;
+  name: string | null;
   imageUrl: string | null;
-  durationSeconds?: number;
-  order?: number;
 };
 
 export type PlaylistGroupSummary = {
