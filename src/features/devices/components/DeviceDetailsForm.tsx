@@ -126,6 +126,11 @@ export function DeviceDetailsForm({ value, onChange, playlists, isEditing, isSav
                     checked={value.active}
                     onChange={handleActiveChange}
                     disabled={disabled}
+                    valueLabel={
+                      value.active
+                        ? t('active', { defaultValue: 'Active' })
+                        : t('inactive', { defaultValue: 'Inactive' })
+                    }
                   />
                 </div>
               </div>

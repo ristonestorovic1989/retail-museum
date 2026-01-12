@@ -1,5 +1,5 @@
-export default function PlaylistGroupsPage() {
-  return (
-    <div className="text-sm text-muted-foreground">Playlist groups page…</div>
-  );
+import PlaylistGroupsContent from '@/features/playlist-groups/PlaylistGroupsContent';
+
+export default function PlaylistGroupsRoute() {
+  return <PlaylistGroupsContent />;
 }

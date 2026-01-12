@@ -205,6 +205,8 @@
     "details": {
       "loading": "Loading device...",
       "title": "Edit device",
+      "active": "Active",
+      "inactive": "Inactive",
       "tabs": {
         "playlists": "Playlist group",
         "details": "Details",
@@ -578,11 +580,120 @@
       }
     }
   },
+  "playlists": {
+    "title": "Playlists",
+    "subtitle": "Manage your media playlists",
+    "actions": {
+      "create": "Create Playlist",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "common": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…",
+      "deleting": "Deleting…",
+      "create": "Create",
+      "creating": "Creating…",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "errors": {
+      "loadList": "Failed to load playlists.",
+      "loadDetails": "Failed to load playlist details."
+    },
+    "list": {
+      "title": "Playlists",
+      "searchPlaceholder": "Search playlists…",
+      "loading": "Loading…",
+      "empty": "No playlists found.",
+      "statusActive": "Active",
+      "statusInactive": "Inactive",
+      "assetsCount": "{count} assets",
+      "refreshing": "Refreshing…"
+    },
+    "details": {
+      "selectHint": "Select a playlist to view details.",
+      "loading": "Loading playlist…",
+      "meta": "{assets} assets • {duration} total",
+      "imageDuration": "Image duration",
+      "imageDurationValue": "{seconds}s",
+      "created": "Created",
+      "devices": "Devices",
+      "noDevices": "No devices",
+      "assetsTitle": "Assets",
+      "addAsset": "Add asset",
+      "addFirstAsset": "Add your first asset",
+      "noAssets": "No assets in this playlist yet",
+      "noImage": "No image",
+      "untitled": "Untitled",
+      "order": "Order: {order}"
+    },
+    "addAssets": {
+      "title": "Add Assets to Playlist",
+      "description": "Select assets to add to \"{name}\"",
+      "searchPlaceholder": "Search assets…",
+      "categories": {
+        "all": "All categories"
+      },
+      "selectedCount": "{count} asset(s) selected",
+      "clearSelection": "Clear selection",
+      "empty": "No assets found matching your criteria.",
+      "confirm": "Add ({count})"
+    },
+    "fields": {
+      "name": "Name",
+      "imageUrl": "Image URL",
+      "transition": "Transition name",
+      "tags": "Tags",
+      "imageDuration": "Image duration (seconds)",
+      "status": "Status",
+      "tagsPlaceholder": "Type a tag and press Enter…",
+      "tagsHint": "Press Enter or comma to add a tag. Backspace removes the last tag."
+    },
+    "placeholders": {
+      "transition": "e.g. fade",
+      "tags": "museum, history, promo"
+    },
+    "create": {
+      "title": "Create new playlist",
+      "description": "Add basic info to create a playlist.",
+      "confirm": "Create",
+      "companyHint": "CompanyId: {id}"
+    },
+    "edit": {
+      "title": "Edit playlist",
+      "description": "Update playlist settings."
+    },
+    "delete": {
+      "title": "Delete playlist",
+      "description": "This will permanently delete \"{name}\".",
+      "confirm": "Delete"
+    },
+    "toasts": {
+      "updatedTitle": "Playlist updated",
+      "updatedDesc": "Changes saved successfully.",
+      "updateFailedTitle": "Update failed",
+      "deletedTitle": "Playlist deleted",
+      "deletedDesc": "The playlist was removed.",
+      "deleteFailedTitle": "Delete failed",
+      "genericError": "Something went wrong.",
+      "createMissingTitle": "Create not wired yet",
+      "createMissingDesc": "Send me the POST /api/playlists endpoint and payload.",
+      "createdTitle": "Playlist created",
+      "createdDesc": "Playlist created successfully.",
+      "createFailedTitle": "Create failed"
+    }
+  },
   "table": {
     "pagination": "Showing {from}–{to} of {total} devices",
     "paginationEmpty": "No results",
     "prev": "Previous",
     "next": "Next",
     "rowsPerPage": "Rows per page"
+  },
+  "common": {
+    "active": "Active",
+    "inactive": "Inactive"
   }
 }

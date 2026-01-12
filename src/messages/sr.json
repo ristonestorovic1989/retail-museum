@@ -578,6 +578,111 @@
       }
     }
   },
+  "playlists": {
+    "title": "Plejliste",
+    "subtitle": "Upravljaj svojim medija plejlistama",
+    "actions": {
+      "create": "Kreiraj plejlistu",
+      "edit": "Izmeni",
+      "delete": "Obriši"
+    },
+    "common": {
+      "cancel": "Otkaži",
+      "save": "Sačuvaj",
+      "saving": "Čuvanje…",
+      "deleting": "Brisanje…",
+      "create": "Kreiraj",
+      "creating": "Kreiram…",
+      "active": "Aktivna",
+      "inactive": "Neaktivna"
+    },
+    "errors": {
+      "loadList": "Neuspešno učitavanje plejlista.",
+      "loadDetails": "Neuspešno učitavanje detalja plejliste."
+    },
+    "list": {
+      "title": "Plejliste",
+      "searchPlaceholder": "Pretraži plejliste…",
+      "loading": "Učitavanje…",
+      "empty": "Nema pronađenih plejlista.",
+      "statusActive": "Aktivna",
+      "statusInactive": "Neaktivna",
+      "assetsCount": "{count} elemenata",
+      "refreshing": "Osvežavam…"
+    },
+    "details": {
+      "selectHint": "Izaberi plejlistu da vidiš detalje.",
+      "loading": "Učitavanje plejliste…",
+      "meta": "{assets} elemenata • ukupno {duration}",
+      "imageDuration": "Trajanje slike",
+      "imageDurationValue": "{seconds} s",
+      "created": "Kreirano",
+      "devices": "Uređaji",
+      "noDevices": "Nema uređaja",
+      "assetsTitle": "Elementi",
+      "addAsset": "Dodaj element",
+      "addFirstAsset": "Dodaj prvi element",
+      "noAssets": "Još nema elemenata u ovoj plejlisti",
+      "noImage": "Nema slike",
+      "untitled": "Bez naziva",
+      "order": "Redosled: {order}"
+    },
+    "addAssets": {
+      "title": "Dodaj elemente u plejlistu",
+      "description": "Izaberi elemente koje želiš da dodaš u „{name}“",
+      "searchPlaceholder": "Pretraži elemente…",
+      "categories": {
+        "all": "Sve kategorije"
+      },
+      "selectedCount": "Izabrano: {count}",
+      "clearSelection": "Očisti izbor",
+      "empty": "Nema elemenata koji odgovaraju kriterijumima.",
+      "confirm": "Dodaj ({count})"
+    },
+    "fields": {
+      "name": "Naziv",
+      "imageUrl": "URL slike",
+      "transition": "Naziv tranzicije",
+      "tags": "Tagovi",
+      "imageDuration": "Trajanje slike (sekunde)",
+      "status": "Status",
+      "tagsPlaceholder": "Unesi tag i pritisni Enter…",
+      "tagsHint": "Pritisni Enter ili zarez da dodaš tag. Backspace briše poslednji tag."
+    },
+    "placeholders": {
+      "transition": "npr. fade",
+      "tags": "muzej, istorija, promo"
+    },
+    "create": {
+      "title": "Kreiraj novu plejlistu",
+      "description": "Unesi osnovne podatke da kreiraš plejlistu.",
+      "confirm": "Kreiraj",
+      "companyHint": "CompanyId: {id}"
+    },
+    "edit": {
+      "title": "Izmeni plejlistu",
+      "description": "Ažuriraj podešavanja plejliste."
+    },
+    "delete": {
+      "title": "Obriši plejlistu",
+      "description": "Ovo će trajno obrisati „{name}“.",
+      "confirm": "Obriši"
+    },
+    "toasts": {
+      "updatedTitle": "Plejlista ažurirana",
+      "updatedDesc": "Izmene su uspešno sačuvane.",
+      "updateFailedTitle": "Ažuriranje nije uspelo",
+      "deletedTitle": "Plejlista obrisana",
+      "deletedDesc": "Plejlista je uklonjena.",
+      "deleteFailedTitle": "Brisanje nije uspelo",
+      "genericError": "Nešto je pošlo po zlu.",
+      "createMissingTitle": "Create još nije povezano",
+      "createMissingDesc": "Pošalji mi POST /api/playlists endpoint i payload.",
+      "createdTitle": "Plejlista kreirana",
+      "createdDesc": "Plejlista je uspešno kreirana.",
+      "createFailedTitle": "Kreiranje nije uspelo"
+    }
+  },
   "table": {
     "pagination": "Prikaz {from}–{to} od {total} uređaja",
     "paginationEmpty": "Nema rezultata",

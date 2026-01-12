@@ -78,7 +78,6 @@ export function AssetDetailsCard({
           </div>
 
           <div className="space-y-4">
-            {/* Name */}
             <div className="space-y-2">
               <Label htmlFor="asset-name">{t('fields.name.label')}</Label>
               <Input
@@ -130,7 +129,6 @@ export function AssetDetailsCard({
               </div>
             </div>
 
-            {/* Tags */}
             <div className="space-y-2">
               <Label>{t('fields.tags.label')}</Label>
               <div className="flex flex-wrap gap-2 rounded-lg border p-3">
@@ -169,7 +167,6 @@ export function AssetDetailsCard({
               </div>
             </div>
 
-            {/* Main description */}
             <div className="space-y-2">
               <Label htmlFor="asset-description">{t('fields.mainDescription.label')}</Label>
               <Textarea

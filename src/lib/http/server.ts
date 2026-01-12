@@ -18,7 +18,7 @@ export async function apiFetch<T>(path: string, opts: Opts = {}): Promise<T> {
       ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
       ...headers,
     },
-    body: body ? JSON.stringify(body) : undefined,
+    body: body != null ? JSON.stringify(body) : undefined,
     cache: 'no-store',
   });
 
@@ -36,7 +36,9 @@ export async function apiFetch<T>(path: string, opts: Opts = {}): Promise<T> {
   if (!res.ok) {
     const message = typeof data === 'string' ? data : data?.message || res.statusText;
 
-    throw new Error(message);
+    console.error(`[apiFetch] ${method} ${path} failed:`, res.status, data);
+
+    throw new Error(`${res.status} ${message}`);
   }
 
   return data as T;

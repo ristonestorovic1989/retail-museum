@@ -9,12 +9,21 @@ type FormCheckboxProps = {
   checked: boolean;
   onChange: (checked: boolean) => void;
   disabled?: boolean;
+  valueLabel?: string;
 };
 
-export function FormCheckbox({ id, label, checked, onChange, disabled }: FormCheckboxProps) {
+export function FormCheckbox({
+  id,
+  label,
+  checked,
+  onChange,
+  disabled,
+  valueLabel,
+}: FormCheckboxProps) {
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>{label}</Label>
+
       <div className="flex items-center gap-2">
         <Checkbox
           id={id}
@@ -22,12 +31,10 @@ export function FormCheckbox({ id, label, checked, onChange, disabled }: FormChe
           disabled={disabled}
           onCheckedChange={(val) => onChange(val === true)}
         />
-        <label
-          htmlFor={id}
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
-          {label}
-        </label>
+
+        {valueLabel ? (
+          <span className="text-sm text-muted-foreground select-none">{valueLabel}</span>
+        ) : null}
       </div>
     </div>
   );

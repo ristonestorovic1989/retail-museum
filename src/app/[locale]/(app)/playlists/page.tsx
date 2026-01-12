@@ -1,3 +1,5 @@
-export default function PlaylistsPage() {
-  return <div className="text-sm text-muted-foreground">Playlists page…</div>;
+import PlaylistsContent from '@/features/playlists/PlaylistContent';
+
+export default function PlaylistsRoute() {
+  return <PlaylistsContent />;
 }
