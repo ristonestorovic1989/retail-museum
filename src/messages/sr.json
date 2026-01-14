@@ -301,7 +301,8 @@
   "assets": {
     "title": "Resursi",
     "subtitle": "Pregledaj i upravljaj svim otpremljenim resursima",
-
+    "pagination": "Prikazano {page} od ukupno {totalPages} strana",
+    "loading": "Učitavanje slika…",
     "breadcrumbs": {
       "dashboard": "Kontrolna tabla",
       "assets": "Resursi"
@@ -625,12 +626,14 @@
       "noAssets": "Još nema elemenata u ovoj plejlisti",
       "noImage": "Nema slike",
       "untitled": "Bez naziva",
-      "order": "Redosled: {order}"
+      "order": "Redosled: {order}",
+      "orderSaved": "Redosled sačuvan"
     },
     "addAssets": {
       "title": "Dodaj elemente u plejlistu",
       "description": "Izaberi elemente koje želiš da dodaš u „{name}“",
       "searchPlaceholder": "Pretraži elemente…",
+      "alreadyInPlaylist": "Već u plejlisti",
       "categories": {
         "all": "Sve kategorije"
       },
@@ -689,5 +692,18 @@
     "prev": "Prethodna",
     "next": "Sledeća",
     "rowsPerPage": "Redova po stranici"
+  },
+  "common": {
+    "active": "Aktivna",
+    "inactive": "Neaktivna",
+    "edit": "Izmeni",
+    "editing": "Izmena…",
+    "cancel": "Otkaži",
+    "save": "Sačuvaj",
+    "remove": "Ukloni",
+    "reorder": "Promeni redosled",
+    "saving": "Čuvanje…",
+    "prev": "Prethodna",
+    "next": "Sledeća"
   }
 }

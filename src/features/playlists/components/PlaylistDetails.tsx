@@ -1,13 +1,13 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Calendar, Clock, Monitor } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
 import type { TFn } from '@/types/i18n';
-import { usePlaylistQuery } from '../api.client';
+import { usePlaylistQuery, useUpdatePlaylistAssetsMutation } from '../api.client';
 
 import { PlaylistEditDialog } from './PlaylistEditDialog';
 import { PlaylistDeleteDialog } from './PlaylistDeleteDialog';
@@ -26,16 +26,59 @@ type Props = {
 
 export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Props) {
   const { data, isLoading, isError, error } = usePlaylistQuery(selectedId ?? '');
+  const updateAssets = useUpdatePlaylistAssetsMutation();
+
+  console.log(data, 'data in details panel');
 
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [addAssetsOpen, setAddAssetsOpen] = useState(false);
+
+  const playlistName = useMemo(
+    () => (data?.name ? data.name : t('playlists.details.untitled')),
+    [data?.name, t],
+  );
 
   const deviceNames = useMemo(() => {
     if (!data) return '';
     if (!data.devices?.length) return t('playlists.details.noDevices');
     return data.devices.map((d) => d.name).join(', ');
   }, [data, t]);
+
+  const openEdit = useCallback(() => setEditOpen(true), []);
+  const openDelete = useCallback(() => setDeleteOpen(true), []);
+  const openAddAssets = useCallback(() => setAddAssetsOpen(true), []);
+
+  const handleDeleteCompleted = useCallback(() => {
+    setDeleteOpen(false);
+    onDeleted();
+  }, [onDeleted]);
+
+  const handleSaveOrder = useCallback(
+    async (assetIds: number[]) => {
+      if (!data) return;
+
+      await updateAssets.mutateAsync({
+        playlistId: data.id,
+        assetIds,
+        replace: true,
+      });
+    },
+    [data, updateAssets],
+  );
+
+  const handleAddAssetsConfirm = useCallback(
+    async (assetIds: number[]) => {
+      if (!data) return;
+
+      await updateAssets.mutateAsync({
+        playlistId: data.id,
+        assetIds,
+        replace: false,
+      });
+    },
+    [data, updateAssets],
+  );
 
   return (
     <Card className="lg:col-span-2 h-full min-h-0 flex flex-col overflow-hidden">
@@ -60,8 +103,8 @@ export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Pr
               <PlaylistDetailsHeader
                 t={t}
                 playlist={data}
-                onEdit={() => setEditOpen(true)}
-                onDelete={() => setDeleteOpen(true)}
+                onEdit={openEdit}
+                onDelete={openDelete}
               />
 
               <div className="grid grid-cols-2 gap-4">
@@ -89,17 +132,19 @@ export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Pr
             <PlaylistAssetsSection
               t={t}
               playlist={data}
-              onAddAssets={() => setAddAssetsOpen(true)}
+              onAddAssets={openAddAssets}
+              isSaving={updateAssets.isPending}
+              onSaveOrder={handleSaveOrder}
             />
 
             <PlaylistAddAssetsDialog
               t={t}
               open={addAssetsOpen}
               onOpenChange={setAddAssetsOpen}
-              playlistName={data.name || t('playlists.details.untitled')}
-              onConfirm={(assetIds) => {
-                console.log('add assets', assetIds);
-              }}
+              playlistName={playlistName}
+              alreadyAddedAssetIds={data.assetIds ?? []}
+              onConfirm={handleAddAssetsConfirm}
+              isSubmitting={updateAssets.isPending}
             />
 
             <PlaylistEditDialog
@@ -116,10 +161,7 @@ export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Pr
               onOpenChange={setDeleteOpen}
               playlistId={data.id}
               playlistName={data.name}
-              onDeleted={() => {
-                setDeleteOpen(false);
-                onDeleted();
-              }}
+              onDeleted={handleDeleteCompleted}
             />
           </div>
         )}

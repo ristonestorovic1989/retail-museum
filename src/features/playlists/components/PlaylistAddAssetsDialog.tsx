@@ -1,7 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { Search, FileVideo, FileImage, FileAudio, X } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import { X } from 'lucide-react';
 
 import {
   Dialog,
@@ -12,84 +12,79 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 
 import type { TFn } from '@/types/i18n';
+import { CenteredSpinner } from '@/components/shared/centered-spiner';
+import { SearchInput } from '@/components/shared/search-input';
 
-type AssetType = 'video' | 'image' | 'audio';
-
-type Asset = {
-  id: number;
-  name: string;
-  type: AssetType;
-  category: string;
-  duration: string;
-};
+import { useAssetsQuery } from '@/features/assets/api.client';
+import type { AssetListItem } from '@/features/assets/types';
+import { getAssetUrl } from '@/lib/assets';
 
 type Props = {
   t: TFn;
   open: boolean;
   onOpenChange: (v: boolean) => void;
   playlistName: string;
-  // pošto još nema API wired, ostavljam interno mock; možeš posle da proslediš prop
-  assets?: Asset[];
-  onConfirm: (assetIds: number[]) => void;
+  onConfirm: (assetIds: number[]) => void | Promise<void>;
+  isSubmitting?: boolean;
+  alreadyAddedAssetIds?: number[];
 };
 
-const DEFAULT_ASSETS: Asset[] = [
-  { id: 101, name: 'Corporate Intro', type: 'video', category: 'Marketing', duration: '30s' },
-  { id: 102, name: 'Product Showcase', type: 'video', category: 'Marketing', duration: '1m 15s' },
-  { id: 103, name: 'Company Logo', type: 'image', category: 'Branding', duration: '10s' },
-  { id: 104, name: 'Background Music 1', type: 'audio', category: 'Audio', duration: '2m 30s' },
-  { id: 105, name: 'Promotional Banner', type: 'image', category: 'Marketing', duration: '15s' },
-  { id: 106, name: 'Tutorial Video', type: 'video', category: 'Education', duration: '5m' },
-  { id: 107, name: 'Event Highlights', type: 'video', category: 'Events', duration: '2m' },
-  { id: 108, name: 'Testimonial', type: 'video', category: 'Marketing', duration: '45s' },
-];
-
-function iconFor(type: AssetType) {
-  if (type === 'video') return <FileVideo className="h-10 w-10 text-muted-foreground" />;
-  if (type === 'image') return <FileImage className="h-10 w-10 text-muted-foreground" />;
-  return <FileAudio className="h-10 w-10 text-muted-foreground" />;
-}
+const PAGINATION_H = 48;
 
 export function PlaylistAddAssetsDialog({
   t,
   open,
   onOpenChange,
   playlistName,
-  assets = DEFAULT_ASSETS,
   onConfirm,
+  isSubmitting = false,
+  alreadyAddedAssetIds = [],
 }: Props) {
   const [assetSearch, setAssetSearch] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [selectedAssets, setSelectedAssets] = useState<number[]>([]);
+  const [page, setPage] = useState(1);
 
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    assets.forEach((a) => set.add(a.category));
-    return Array.from(set.values()).sort();
-  }, [assets]);
+  const pageSize = 30;
 
-  const filteredAssets = useMemo(() => {
-    const s = assetSearch.trim().toLowerCase();
-    return assets.filter((a) => {
-      const matchesSearch = !s || a.name.toLowerCase().includes(s);
-      const matchesCategory = selectedCategory === 'all' || a.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [assets, assetSearch, selectedCategory]);
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch]);
+
+  const params = useMemo(
+    () => ({
+      includeArchived: false,
+      searchTerm: debouncedSearch.trim() || undefined,
+      page,
+      pageSize,
+    }),
+    [debouncedSearch, page],
+  );
+
+  const { data, isLoading, isError, error, isFetching } = useAssetsQuery(params);
+
+  const items: AssetListItem[] = data?.items ?? [];
+  const totalPages = data?.totalPages ?? 1;
+
+  const alreadySet = useMemo(() => new Set(alreadyAddedAssetIds), [alreadyAddedAssetIds]);
+
+  const selectedNewAssets = useMemo(
+    () => selectedAssets.filter((id) => !alreadySet.has(id)),
+    [selectedAssets, alreadySet],
+  );
+
+  useEffect(() => {
+    setSelectedAssets((prev) => prev.filter((id) => !alreadySet.has(id)));
+  }, [alreadySet]);
 
   const toggleAssetSelection = (assetId: number) => {
+    if (alreadySet.has(assetId)) return;
+    if (isSubmitting) return;
+
     setSelectedAssets((prev) =>
       prev.includes(assetId) ? prev.filter((id) => id !== assetId) : [...prev, assetId],
     );
@@ -97,9 +92,15 @@ export function PlaylistAddAssetsDialog({
 
   const reset = () => {
     setAssetSearch('');
-    setSelectedCategory('all');
+    setDebouncedSearch('');
     setSelectedAssets([]);
+    setPage(1);
   };
+
+  const handlePrev = () => setPage((p) => Math.max(1, p - 1));
+  const handleNext = () => setPage((p) => Math.min(totalPages, p + 1));
+
+  const showPager = totalPages > 1;
 
   return (
     <Dialog
@@ -109,7 +110,19 @@ export function PlaylistAddAssetsDialog({
         if (!v) reset();
       }}
     >
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+      <DialogContent
+        className="
+          max-w-none!
+          w-[calc(100vw-2rem)]!
+          sm:w-[calc(100vw-5rem)]!
+          lg:w-[calc(100vw-8rem)]!
+          xl:w-[calc(100vw-12rem)]!
+          2xl:w-[1350px]!
+          max-h-[92vh]
+          overflow-hidden
+          flex flex-col
+        "
+      >
         <DialogHeader className="shrink-0">
           <DialogTitle>{t('playlists.addAssets.title')}</DialogTitle>
           <DialogDescription>
@@ -117,99 +130,186 @@ export function PlaylistAddAssetsDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex-1 min-h-0 overflow-hidden flex flex-col gap-4">
-          {/* Search + filter */}
-          <div className="flex gap-4 shrink-0">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder={t('playlists.addAssets.searchPlaceholder')}
-                className="pl-9"
-                value={assetSearch}
-                onChange={(e) => setAssetSearch(e.target.value)}
-              />
-            </div>
-
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger className="w-[220px]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t('playlists.addAssets.categories.all')}</SelectItem>
-                {categories.map((c) => (
-                  <SelectItem key={c} value={c}>
-                    {c}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+        <div className="flex flex-col gap-4">
+          <div className="shrink-0">
+            <SearchInput
+              value={assetSearch}
+              onChange={setAssetSearch}
+              onDebouncedChange={setDebouncedSearch}
+              delayMs={350}
+              disabled={isSubmitting}
+              placeholder={t('playlists.addAssets.searchPlaceholder')}
+              autoFocus={false}
+              disableFocusStyles
+              clearable
+            />
           </div>
 
-          {/* Selected count */}
-          {selectedAssets.length > 0 && (
+          {selectedNewAssets.length > 0 && (
             <div className="shrink-0 flex items-center justify-between p-3 bg-primary/10 rounded-lg">
               <span className="text-sm font-medium">
-                {t('playlists.addAssets.selectedCount', { count: selectedAssets.length })}
+                {t('playlists.addAssets.selectedCount', { count: selectedNewAssets.length })}
               </span>
-              <Button variant="ghost" size="sm" onClick={() => setSelectedAssets([])}>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedAssets([])}
+                disabled={isSubmitting}
+              >
                 {t('playlists.addAssets.clearSelection')}
               </Button>
             </div>
           )}
 
-          {/* Grid */}
-          <div className="flex-1 min-h-0 overflow-y-auto pr-2">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {filteredAssets.map((asset) => {
-                const checked = selectedAssets.includes(asset.id);
-                return (
-                  <Card
-                    key={asset.id}
-                    className={`cursor-pointer transition-all hover:shadow-md ${checked ? 'ring-2 ring-primary' : ''}`}
-                    onClick={() => toggleAssetSelection(asset.id)}
-                  >
-                    <CardContent className="p-4">
-                      <div className="space-y-3">
-                        <div className="relative aspect-video bg-muted rounded-lg overflow-hidden flex items-center justify-center">
-                          {iconFor(asset.type)}
+          <div className="relative h-[62vh] max-h-[620px] min-h-[420px] overflow-hidden rounded-lg border">
+            <div
+              className="h-full overflow-y-auto pr-2"
+              style={{
+                paddingBottom: showPager ? PAGINATION_H + 12 : 12,
+              }}
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 px-2 py-2">
+                {items.map((asset) => {
+                  const checked = selectedAssets.includes(asset.id);
+                  const disabled = alreadySet.has(asset.id) || isSubmitting;
 
-                          {checked && (
-                            <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                              <div className="bg-primary rounded-full p-2">
-                                <X className="h-4 w-4 text-primary-foreground" />
+                  const thumbUrl = getAssetUrl(asset, { thumbnail: true });
+                  const fullUrl = getAssetUrl(asset);
+
+                  return (
+                    <Card
+                      key={asset.id}
+                      className={[
+                        'transition-all',
+                        disabled
+                          ? 'opacity-60 cursor-not-allowed'
+                          : 'cursor-pointer hover:shadow-md',
+                        checked && !disabled ? 'ring-2 ring-primary' : '',
+                      ].join(' ')}
+                      onClick={() => {
+                        if (disabled) return;
+                        toggleAssetSelection(asset.id);
+                      }}
+                    >
+                      <CardContent className="p-3">
+                        <div className="space-y-2">
+                          <div className="relative aspect-video bg-muted rounded-lg overflow-hidden">
+                            {thumbUrl || fullUrl ? (
+                              <img
+                                src={thumbUrl || fullUrl}
+                                alt={asset.name}
+                                className="h-full w-full object-cover"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <div className="h-full w-full flex items-center justify-center text-xs text-muted-foreground">
+                                No preview
                               </div>
+                            )}
+
+                            {checked && !disabled && (
+                              <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
+                                <div className="bg-primary rounded-full p-2">
+                                  <X className="h-4 w-4 text-primary-foreground" />
+                                </div>
+                              </div>
+                            )}
+
+                            {alreadySet.has(asset.id) && (
+                              <div className="absolute inset-0 bg-background/60 flex items-center justify-center px-2">
+                                <span className="text-[11px] text-muted-foreground text-center">
+                                  {t('playlists.addAssets.alreadyInPlaylist')}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+
+                          <div className="space-y-1">
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="min-w-0">
+                                <div className="text-sm font-medium line-clamp-1">{asset.name}</div>
+                                {asset.description ? (
+                                  <div className="text-xs text-muted-foreground line-clamp-1">
+                                    {asset.description}
+                                  </div>
+                                ) : null}
+                              </div>
+
+                              <Checkbox
+                                checked={checked}
+                                disabled={disabled}
+                                onCheckedChange={() => {
+                                  if (disabled) return;
+                                  toggleAssetSelection(asset.id);
+                                }}
+                                onClick={(e) => e.stopPropagation()}
+                              />
                             </div>
-                          )}
-                        </div>
 
-                        <div className="space-y-1">
-                          <div className="flex items-start justify-between gap-2">
-                            <h4 className="font-medium text-sm line-clamp-1">{asset.name}</h4>
-                            <Checkbox
-                              checked={checked}
-                              onCheckedChange={() => toggleAssetSelection(asset.id)}
-                              onClick={(e) => e.stopPropagation()}
-                            />
-                          </div>
-
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                            <span className="capitalize">{asset.type}</span>
-                            <span>•</span>
-                            <span>{asset.duration}</span>
-                            <span>•</span>
-                            <span>{asset.category}</span>
+                            <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                              {asset.format ? <span>{asset.format}</span> : null}
+                              {asset.quality ? (
+                                <>
+                                  <span>•</span>
+                                  <span className="line-clamp-1">{asset.quality}</span>
+                                </>
+                              ) : null}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+
+              {!isLoading && !isError && items.length === 0 && (
+                <div className="text-center py-12 text-muted-foreground">
+                  {t('playlists.addAssets.empty')}
+                </div>
+              )}
             </div>
 
-            {filteredAssets.length === 0 && (
-              <div className="text-center py-12 text-muted-foreground">
-                {t('playlists.addAssets.empty')}
+            {showPager && (
+              <div className="absolute bottom-0 left-0 right-0 h-12 px-3 flex items-center justify-between border-t bg-background/95 backdrop-blur">
+                <div className="text-xs text-muted-foreground">
+                  {t('assets.pagination', { page, totalPages })}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handlePrev}
+                    disabled={isSubmitting || page <= 1}
+                  >
+                    {t('common.prev')}
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleNext}
+                    disabled={isSubmitting || page >= totalPages}
+                  >
+                    {t('common.next')}
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {(isLoading || isFetching) && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/60">
+                <CenteredSpinner label={t('assets.loading')} />
+              </div>
+            )}
+
+            {isError && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/60 p-6">
+                <div className="text-sm text-destructive text-center max-w-lg">
+                  {error instanceof Error ? error.message : t('assets.errors.load')}
+                </div>
               </div>
             )}
           </div>
@@ -218,6 +318,7 @@ export function PlaylistAddAssetsDialog({
         <DialogFooter className="shrink-0">
           <Button
             variant="outline"
+            disabled={isSubmitting}
             onClick={() => {
               onOpenChange(false);
               reset();
@@ -227,14 +328,16 @@ export function PlaylistAddAssetsDialog({
           </Button>
 
           <Button
-            onClick={() => {
-              onConfirm(selectedAssets);
+            disabled={selectedNewAssets.length === 0 || isSubmitting}
+            onClick={async () => {
+              await onConfirm(selectedNewAssets);
               onOpenChange(false);
               reset();
             }}
-            disabled={selectedAssets.length === 0}
           >
-            {t('playlists.addAssets.confirm', { count: selectedAssets.length })}
+            {isSubmitting
+              ? t('playlists.common.saving')
+              : t('playlists.addAssets.confirm', { count: selectedNewAssets.length })}
           </Button>
         </DialogFooter>
       </DialogContent>

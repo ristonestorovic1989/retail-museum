@@ -51,6 +51,7 @@ export type PlaylistDetailsApiItem = {
   tags: string[];
   assets?: PlaylistAssetApiItem[];
   devices: PlaylistDeviceApiItem[];
+  active: boolean;
 };
 
 export type PlaylistsApiResponse = ApiResponse<PagedResult<PlaylistApiItem>>;
@@ -96,6 +97,7 @@ export type PlaylistDetails = {
   tags: string[];
   assets: PlaylistAssetPreview[];
   devices: PlaylistDevice[];
+  active: boolean;
 };
 
 export type PlaylistsListResponse = {
@@ -143,4 +145,15 @@ export type CreatePlaylistApiResponse = {
   succeeded: boolean;
   message: string | null;
   data: number;
+};
+
+export type UpdatePlaylistAssetsRequest = {
+  assetIds: number[];
+  replace: boolean;
+};
+
+export type UpdatePlaylistAssetsResponse = {
+  succeeded: boolean;
+  message: string;
+  data: string;
 };

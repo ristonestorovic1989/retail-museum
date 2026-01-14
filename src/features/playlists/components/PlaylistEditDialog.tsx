@@ -28,27 +28,31 @@ export function PlaylistEditDialog({ t, open, onOpenChange, companyId, playlist 
   const mutation = useUpdatePlaylistMutation(playlist.id, t);
 
   const [name, setName] = useState<string>(playlist.name ?? '');
-  const [transitionName, setTransitionName] = useState<string>('none');
 
-  const [tags, setTags] = useState<string[]>(((playlist as any).tags ?? []) as string[]);
+  const [tags, setTags] = useState<string[]>(
+    ((playlist as PlaylistDetails).tags ?? []) as string[],
+  );
 
   const [imageDurationText, setImageDurationText] = useState<string>(
-    String((playlist as any).imageDurationSeconds ?? (playlist as any).imageDuration ?? 15),
+    String(
+      (playlist as any).imageDurationSeconds ?? (playlist as PlaylistDetails).imageDuration ?? 15,
+    ),
   );
-  const [active, setActive] = useState<boolean>((playlist as any).active ?? true);
+  const [active, setActive] = useState<boolean>((playlist as PlaylistDetails).active ?? true);
 
   useEffect(() => {
     if (!open) return;
 
     setName(playlist.name ?? '');
-    setTransitionName((playlist as any).transitionName ?? 'none');
-
-    setTags(((playlist as any).tags ?? []) as string[]);
-
+    setTags(((playlist as PlaylistDetails).tags ?? []) as string[]);
     setImageDurationText(
-      String((playlist as any).imageDurationSeconds ?? (playlist as any).imageDuration ?? 15),
+      String(
+        (playlist as PlaylistDetails).imageDuration ??
+          (playlist as PlaylistDetails).imageDuration ??
+          15,
+      ),
     );
-    setActive((playlist as any).active ?? true);
+    setActive((playlist as PlaylistDetails).active ?? true);
   }, [open, playlist.id]);
 
   const imageDuration = useMemo(() => {
@@ -63,7 +67,6 @@ export function PlaylistEditDialog({ t, open, onOpenChange, companyId, playlist 
     const payload: UpdatePlaylistPayload = {
       name: name.trim(),
       imageUrl: getPlaylistImageUrl(playlist),
-      transitionName: transitionName?.trim() ?? '',
       tags,
       imageDuration,
       companyId,

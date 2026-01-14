@@ -72,13 +72,7 @@ export function AppDialog({
         {(primaryAction || showCancel) && (
           <div className="flex justify-end gap-2">
             {showCancel && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleClose}
-                disabled={isBusy}
-                className="hover:bg-red-600/80 hover:text-white"
-              >
+              <Button type="button" variant="outline" onClick={handleClose} disabled={isBusy}>
                 {cancelLabel}
               </Button>
             )}

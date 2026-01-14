@@ -52,6 +52,7 @@ export function mapPlaylistDetails(p: PlaylistDetailsApiItem): PlaylistDetails {
     assetIds: p.assetIds ?? [],
     tags: p.tags ?? [],
     assets,
+    active: p.active,
     devices: (p.devices ?? []).map((d) => ({ id: d.id, name: d.name })),
   };
 }

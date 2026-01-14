@@ -303,6 +303,8 @@
   "assets": {
     "title": "Assets",
     "subtitle": "Browse and manage all uploaded assets",
+    "pagination": "Showing {page} of {totalPages} pages",
+    "loading": "Loading assets…",
 
     "breadcrumbs": {
       "dashboard": "Dashboard",
@@ -627,12 +629,14 @@
       "noAssets": "No assets in this playlist yet",
       "noImage": "No image",
       "untitled": "Untitled",
-      "order": "Order: {order}"
+      "order": "Order: {order}",
+      "orderSaved": "Order saved"
     },
     "addAssets": {
       "title": "Add Assets to Playlist",
       "description": "Select assets to add to \"{name}\"",
       "searchPlaceholder": "Search assets…",
+      "alreadyInPlaylist": "These assets are already in the playlist",
       "categories": {
         "all": "All categories"
       },
@@ -694,6 +698,15 @@
   },
   "common": {
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "edit": "Edit",
+    "editing": "Editing…",
+    "cancel": "Cancel",
+    "save": "Save",
+    "remove": "Remove",
+    "reorder": "Reorder",
+    "saving": "Saving…",
+    "prev": "Prev",
+    "next": "Next"
   }
 }

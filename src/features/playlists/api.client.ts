@@ -14,6 +14,8 @@ import type {
   PlaylistsListResponse,
   PlaylistsQueryParams,
   UpdatePlaylistApiResponse,
+  UpdatePlaylistAssetsRequest,
+  UpdatePlaylistAssetsResponse,
   UpdatePlaylistPayload,
 } from './types';
 import { mapPlaylistDetails, mapPlaylistSummary } from './mappers';
@@ -100,6 +102,26 @@ export async function createPlaylist(payload: CreatePlaylistPayload): Promise<nu
 
   if (!res.succeeded) throw new Error(res.message || 'Failed to create playlist');
   return res.data;
+}
+
+export async function updatePlaylistAssets(
+  playlistId: number,
+  body: UpdatePlaylistAssetsRequest,
+): Promise<UpdatePlaylistAssetsResponse> {
+  const res = await clientFetch<UpdatePlaylistAssetsResponse>(
+    `/api/playlists/${playlistId}/assets`,
+    {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+    },
+  );
+
+  if (!res.succeeded) {
+    throw new Error(res.message || 'Failed to update playlist assets');
+  }
+
+  return res;
 }
 
 export function usePlaylistsQuery(params: PlaylistsQueryParams) {
@@ -199,6 +221,42 @@ export function useCreatePlaylistMutation(t?: (k: string, opts?: any) => string)
       toast.error(t?.('playlists.toasts.createFailedTitle') ?? 'Create failed', {
         description: err instanceof Error ? err.message : 'Something went wrong.',
       });
+    },
+  });
+}
+
+export function useUpdatePlaylistAssetsMutation() {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: (vars: { playlistId: number; assetIds: number[]; replace?: boolean }) =>
+      updatePlaylistAssets(vars.playlistId, { assetIds: vars.assetIds, replace: !!vars.replace }),
+
+    onMutate: async (vars) => {
+      if (!vars.replace) return;
+
+      await qc.cancelQueries({ queryKey: PLAYLIST_QK(vars.playlistId) });
+
+      const prev = qc.getQueryData<any>(PLAYLIST_QK(vars.playlistId));
+
+      qc.setQueryData<any>(PLAYLIST_QK(vars.playlistId), (old: any) => {
+        if (!old) return old;
+        return {
+          ...old,
+          assetIds: vars.assetIds,
+        };
+      });
+
+      return { prev };
+    },
+
+    onError: (_err, vars, ctx) => {
+      if (ctx?.prev) qc.setQueryData(PLAYLIST_QK(vars.playlistId), ctx.prev);
+    },
+
+    onSettled: (_res, _err, vars) => {
+      qc.invalidateQueries({ queryKey: PLAYLIST_QK(vars.playlistId) });
+      qc.invalidateQueries({ queryKey: PLAYLISTS_QK });
     },
   });
 }

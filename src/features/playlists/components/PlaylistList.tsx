@@ -13,6 +13,7 @@ import { InlineSpinner } from '@/components/shared/inline-spinner';
 import type { TFn } from '@/types/i18n';
 import type { PlaylistSummary } from '../types';
 import { CenteredSpinner } from '@/components/shared/centered-spiner';
+import { SearchInput } from '@/components/shared/search-input';
 
 type Props = {
   t: TFn;
@@ -52,13 +53,15 @@ export function PlaylistsList({
           )}
         </div>
 
-        <div className="relative mt-4">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input
-            className="pl-8"
-            placeholder={t('playlists.list.searchPlaceholder')}
+        <div className="mt-4">
+          <SearchInput
             value={searchTerm}
-            onChange={(e) => onSearchTermChange(e.target.value)}
+            onChange={() => {}}
+            onDebouncedChange={onSearchTermChange}
+            delayMs={350}
+            placeholder={t('playlists.list.searchPlaceholder')}
+            disableFocusStyles
+            clearable
           />
         </div>
       </CardHeader>
