@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Plus, TabletSmartphone } from 'lucide-react';
+import { ListVideo, Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
@@ -59,7 +59,7 @@ export default function PlaylistsContent() {
     <div className="space-y-6 w-full min-w-0 overflow-x-hidden">
       <div className="flex items-center justify-between gap-4">
         <PageHeader
-          icon={<TabletSmartphone className="h-6 w-6" />}
+          icon={<ListVideo className="h-6 w-6" />}
           title={t('playlists.title')}
           subtitle={t('playlists.subtitle')}
         />

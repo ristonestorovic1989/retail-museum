@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Settings, Trash2, TabletSmartphone, LayoutGrid, Rows3 } from 'lucide-react';
+import { Search, Settings, Trash2, LayoutGrid, Rows3, MonitorSmartphone } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { useConfirm } from '@/providers/confirm-provider';
@@ -145,7 +145,7 @@ export default function DevicesContent() {
   return (
     <div className="space-y-6">
       <PageHeader
-        icon={<TabletSmartphone className="h-6 w-6" />}
+        icon={<MonitorSmartphone className="h-6 w-6" />}
         title={t('title')}
         subtitle={t('subtitle')}
       />

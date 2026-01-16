@@ -117,7 +117,7 @@ export function PlaylistAddAssetsDialog({
           sm:w-[calc(100vw-5rem)]!
           lg:w-[calc(100vw-8rem)]!
           xl:w-[calc(100vw-12rem)]!
-          2xl:w-[1350px]!
+          2xl:w-337.5!
           max-h-[92vh]
           overflow-hidden
           flex flex-col
@@ -162,7 +162,7 @@ export function PlaylistAddAssetsDialog({
             </div>
           )}
 
-          <div className="relative h-[62vh] max-h-[620px] min-h-[420px] overflow-hidden rounded-lg border">
+          <div className="relative h-[62vh] max-h-155 min-h-105 overflow-hidden rounded-lg border">
             <div
               className="h-full overflow-y-auto pr-2"
               style={{

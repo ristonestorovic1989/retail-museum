@@ -113,7 +113,13 @@ export function PlaylistPreviewOverlay({ isOpen, playlist, assets, onClose, t }:
               isFullscreen ? 'h-[calc(100%-44px)] p-2 sm:p-3' : 'h-[calc(100%-44px)] p-3 sm:p-4'
             }
           >
-            <PlaylistPreview assets={assets} intervalMs={intervalMs} autoPlay onClose={onClose} />
+            <PlaylistPreview
+              assets={assets}
+              intervalMs={intervalMs}
+              autoPlay
+              onClose={onClose}
+              t={t}
+            />
           </div>
         </div>
       </div>

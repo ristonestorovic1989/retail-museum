@@ -28,7 +28,6 @@ type Props = {
 export function PlaylistGroupPreviewPanel({
   group,
   selectedPlaylists,
-  playlistAssetsById,
   activePlaylistId,
   isPreviewOpen,
   onPlaylistClick,
@@ -57,7 +56,7 @@ export function PlaylistGroupPreviewPanel({
         <h3 className="text-sm font-medium">{t('previewTitle')}</h3>
       </div>
 
-      <div className="relative h-[430px] md:h-[480px] lg:h-[520px] overflow-hidden rounded-lg border">
+      <div className="relative h-107.5 md:h-120 lg:h-130 overflow-hidden rounded-lg border">
         {!group && previewPlaceholder}
 
         {group && (

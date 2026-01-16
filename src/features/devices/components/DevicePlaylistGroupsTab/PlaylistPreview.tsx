@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import type { PlaylistAssetPreview } from '../../types';
 import { getAssetUrl } from '@/lib/assets';
+import type { TFn } from '@/types/i18n';
 
 const THUMB_W = 84;
 const THUMB_H = 58;
@@ -13,13 +14,14 @@ const GAP = 10;
 const STEP = THUMB_W + GAP;
 
 type Props = {
+  t: TFn;
   assets: PlaylistAssetPreview[];
   intervalMs?: number;
   autoPlay?: boolean;
   onClose?: () => void;
 };
 
-export function PlaylistPreview({ assets, intervalMs = 8000, autoPlay = true, onClose }: Props) {
+export function PlaylistPreview({ t, assets, intervalMs = 8000, autoPlay = true, onClose }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -85,16 +87,24 @@ export function PlaylistPreview({ assets, intervalMs = 8000, autoPlay = true, on
     return () => ro.disconnect();
   }, []);
 
+  const previewT = useCallback(
+    (key: string, values?: Record<string, unknown>) => t(`preview.${key}`, values),
+    [t],
+  );
+
   if (!assets?.length) {
     return (
       <div className="flex h-full w-full items-center justify-center rounded-lg bg-muted/20 text-sm text-muted-foreground">
-        No assets in this playlist.
+        {previewT('noAssets')}
       </div>
     );
   }
 
   const current = assets[index];
-  const itemTitle = current?.name?.trim() || `Asset ${index + 1}`;
+  const itemTitle =
+    current?.name?.trim() ||
+    previewT('assetFallback', { index: index + 1 }) ||
+    `Asset ${index + 1}`;
   const mainSrc = getAssetUrl(current?.imageUrl ?? null);
 
   const translateX = useMemo(() => {
@@ -146,8 +156,8 @@ export function PlaylistPreview({ assets, intervalMs = 8000, autoPlay = true, on
               type="button"
               onClick={goPrev}
               className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 p-2 text-white/90 hover:text-accent hover:bg-accent/25 hover:border-accent/60 focus-visible:ring-2 focus-visible:ring-accent transition cursor-pointer"
-              aria-label="Previous"
-              title="Previous (←)"
+              aria-label={previewT('previous')}
+              title={`${previewT('previous')} (←)`}
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
@@ -156,8 +166,8 @@ export function PlaylistPreview({ assets, intervalMs = 8000, autoPlay = true, on
               type="button"
               onClick={goNext}
               className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/15 bg-black/55 p-2 text-white/90 hover:text-accent hover:bg-accent/25 hover:border-accent/60 focus-visible:ring-2 focus-visible:ring-accent transition cursor-pointer"
-              aria-label="Next"
-              title="Next (→)"
+              aria-label={previewT('next')}
+              title={`${previewT('next')} (→)`}
             >
               <ChevronRight className="h-4 w-4" />
             </button>
@@ -174,7 +184,7 @@ export function PlaylistPreview({ assets, intervalMs = 8000, autoPlay = true, on
 
             {paused && (
               <span className="shrink-0 rounded bg-white/10 px-2 py-0.5 text-[10px] text-white/70">
-                Paused
+                {previewT('paused')}
               </span>
             )}
           </div>
@@ -196,7 +206,10 @@ export function PlaylistPreview({ assets, intervalMs = 8000, autoPlay = true, on
                 {assets.map((a, i) => {
                   const thumbSrc = getAssetUrl(a.imageUrl ?? null);
                   const active = i === index;
-                  const thumbTitle = a?.name?.trim() || `Asset ${i + 1}`;
+                  const thumbTitle =
+                    a?.name?.trim() ||
+                    previewT('assetFallback', { index: i + 1 }) ||
+                    `Asset ${i + 1}`;
 
                   return (
                     <button
@@ -212,7 +225,7 @@ export function PlaylistPreview({ assets, intervalMs = 8000, autoPlay = true, on
                           : 'border-white/15 hover:border-accent/60 hover:scale-[1.01]',
                       ].join(' ')}
                       style={{ width: THUMB_W, height: THUMB_H }}
-                      aria-label={`Go to item ${i + 1}`}
+                      aria-label={previewT('goToItem', { index: i + 1 })}
                       title={thumbTitle}
                     >
                       {thumbSrc ? (

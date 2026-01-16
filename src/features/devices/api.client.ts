@@ -49,6 +49,7 @@ function mapDeviceDetails(res: DeviceDetailsApiResponse): DeviceDetails {
         assetIds: p.assetIds ?? [],
         imageUrl: p.imageUrl ?? p.imageURL ?? null,
         backgroundUrl: p.backgroundUrl ?? p.backgroundURL ?? null,
+        creationDate: p.creationDate ?? p.dateOfCreation,
       }))
     : [];
 

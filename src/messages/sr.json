@@ -205,6 +205,8 @@
     "details": {
       "loading": "Učitavanje uređaja...",
       "title": "Izmena uređaja",
+      "active": "Aktivan",
+      "inactive": "Neaktivan",
       "tabs": {
         "playlists": "Grupa plejlista",
         "details": "Detalji",
@@ -268,7 +270,11 @@
       "empty": "Nema dostupnih plejlista.",
       "previewTitle": "Pregled grupe plejlista",
       "previewPlaceholder": "Pregled plejlista",
-      "loading": "Učitavanje plejlista..."
+      "loading": "Učitavanje plejlista...",
+      "preview": {
+        "assetFallback": "Aset {index}",
+        "goToItem": "Idi na stavku {index}"
+      }
     },
     "playlistGroups": {
       "title": "Grupe plejlista",
@@ -276,6 +282,24 @@
       "empty": "Nema dostupnih grupa plejlista.",
       "previewTitle": "Pregled grupe plejlista",
       "previewPlaceholder": "Izaberi grupu plejlisti da vidiš prikaz ovde.",
+      "preview": {
+        "title": "Pregled plejliste",
+        "placeholder": "Selektuj plejlistu da vidiš pregled ovde.",
+        "paused": "Pauzirano",
+        "fullscreen": "Uđi u ceo ekran",
+        "exitFullscreen": "Izađi iz celog ekrana",
+        "closeHint": "Zatvori (Esc)",
+        "previous": "Prethodna",
+        "next": "Sledeća",
+        "noAssets": "Još nema elemenata u ovoj plejlisti",
+        "unknownDuration": "—",
+        "unknownAssets": "—",
+        "assetsCountShort": "{count} stavki",
+        "open": "Otvori pregled",
+        "loading": "Učitavanje pregleda...",
+        "assetFallback": "Aset {index}",
+        "goToItem": "Idi na stavku {index}"
+      },
       "meta": {
         "duration": "Trajanje: {duration}",
         "numPlaylists": "{count, plural, one {# plejlista} few {# plejliste} other {# plejlista}}"
@@ -705,5 +729,171 @@
     "saving": "Čuvanje…",
     "prev": "Prethodna",
     "next": "Sledeća"
+  },
+  "playlistGroups": {
+    "title": "Grupe plejlista",
+    "subtitle": "Upravljajte plejlistama kroz logične grupe.",
+    "searchPlaceholder": "Pretraži grupe…",
+    "actions": {
+      "createGroup": "Kreiraj grupu"
+    },
+
+    "pagination": {
+      "itemsPerPage": "Redova po strani",
+      "page": "Strana {page} od {pages}",
+      "next": "Sledeća",
+      "previous": "Prethodna"
+    },
+
+    "common": {
+      "cancel": "Otkaži",
+      "close": "Zatvori",
+      "save": "Sačuvaj",
+      "saving": "Čuvanje…",
+      "delete": "Obriši",
+      "deleting": "Brisanje…",
+      "clear": "Očisti"
+    },
+
+    "list": {
+      "loading": "Učitavanje grupa plejlista…",
+      "loadFailed": "Neuspešno učitavanje grupa plejlista.",
+      "empty": "Nema pronađenih grupa plejlista."
+    },
+
+    "groupCard": {
+      "noDescription": "Bez opisa",
+      "playlistsCount": "{count} plejlista",
+      "idLabel": "ID: {id}",
+
+      "playlistsInGroup": "Plejliste u grupi",
+      "thisGroupPlaylists": "Plejliste ove grupe",
+
+      "loadingGroupDetails": "Učitavanje detalja grupe…",
+      "failedToLoadGroupDetails": "Neuspešno učitavanje detalja grupe.",
+      "noPlaylistsAssigned": "Nema dodeljenih plejlista.",
+
+      "loadingPlaylists": "Učitavanje plejlista…",
+      "failedToLoadPlaylists": "Neuspešno učitavanje plejlista.",
+      "noPlaylistsFound": "Nema plejlista za ovu grupu.",
+
+      "openPlaylist": "Otvori",
+      "noThumbnail": "Nema sličice",
+      "itemsCount": "{count} stavki",
+
+      "preview": {
+        "title": "Pregled",
+        "placeholder": "Izaberi plejlistu da pregledaš njene fajlove.",
+        "paused": "Pauzirano",
+        "fullscreen": "Ceo ekran",
+        "exitFullscreen": "Izađi iz celog ekrana",
+        "closeHint": "Zatvori (Esc)",
+        "previous": "Prethodno",
+        "next": "Sledeće",
+        "noAssets": "Nema fajlova u ovoj plejlisti.",
+        "unknownDuration": "—",
+        "unknownAssets": "—",
+        "assetsCountShort": "{count} stavki",
+        "open": "Otvori pregled",
+        "loading": "Učitavanje pregleda…"
+      },
+
+      "actions": {
+        "edit": "Izmeni grupu",
+        "add": "Dodaj plejliste",
+        "export": "Izvezi Excel",
+        "delete": "Obriši grupu",
+        "create": "Kreiraj grupu",
+        "removeFromGroup": "Ukloni iz grupe"
+      }
+    },
+
+    "toasts": {
+      "addPlaylistsTitle": "Plejliste dodate",
+      "addPlaylistsDesc": "Izabrane plejliste su uspešno dodate u grupu.",
+      "addPlaylistsFailedTitle": "Dodavanje plejlista nije uspelo",
+      "groupCreated": {
+        "title": "Grupa kreirana",
+        "desc": "\"{name}\" je kreirana."
+      },
+      "groupUpdated": {
+        "title": "Grupa izmenjena",
+        "desc": "Izmene su sačuvane."
+      },
+      "groupDeleted": {
+        "title": "Grupa obrisana",
+        "desc": "\"{name}\" je obrisana."
+      },
+      "playlistRemoved": {
+        "title": "Uklonjena",
+        "desc": "Plejlista uklonjena iz grupe."
+      },
+      "removeFailed": {
+        "title": "Uklanjanje nije uspelo"
+      },
+      "createFailed": { "title": "Kreiranje nije uspelo" },
+      "updateFailed": { "title": "Izmena nije uspela" },
+      "deleteFailed": { "title": "Brisanje nije uspelo" },
+      "export": {
+        "title": "Izvoz",
+        "desc": "Izvoz za \"{name}\" biće dodat uskoro."
+      },
+      "openPlaylist": {
+        "title": "Plejlista",
+        "desc": "Otvori plejlistu #{id} uskoro."
+      },
+
+      "genericError": "Došlo je do greške."
+    },
+    "addPlaylists": {
+      "title": "Dodavanje plejlista u grupu",
+      "desc": "Izaberite plejliste koje želite da dodate u „{name}“.",
+      "searchPlaceholder": "Pretraži plejliste…",
+      "selectedCount": "Izabrano plejlista: {count}",
+      "clearSelection": "Očisti izbor",
+      "empty": "Nema pronađenih plejlista.",
+      "confirm": "Dodaj {count} plejlista",
+      "alreadyInGroup": "Već u ovoj grupi",
+      "noPreview": "Nema pregleda",
+      "assetsCount": "{count} asseta"
+    },
+    "dialogs": {
+      "removePlaylist": {
+        "title": "Ukloni plejlistu",
+        "description": "Ukloniti „{playlist}“ iz grupe „{group}“?",
+        "descriptionFallback": "Da li ste sigurni da želite da uklonite ovu plejlistu iz grupe?",
+        "confirm": "Ukloni",
+        "removing": "Uklanjanje…",
+        "cancel": "Otkaži"
+      },
+      "deleteGroup": {
+        "title": "Obriši grupu",
+        "description": "Da li ste sigurni da želite da obrišete „{name}“?",
+        "descriptionFallback": "Da li ste sigurni da želite da obrišete ovu grupu?",
+        "confirm": "Obriši",
+        "deleting": "Brisanje…",
+        "cancel": "Otkaži"
+      },
+      "createGroup": {
+        "title": "Kreiraj grupu plejlista",
+        "description": "Grupiši plejliste radi bolje organizacije.",
+        "fields": {
+          "name": "Naziv grupe",
+          "description": "Opis",
+          "imageUrl": "URL slike",
+          "backgroundUrl": "URL pozadine",
+          "playlistIds": "ID-jevi plejlista (odvojeni zarezom)"
+        },
+        "translations": {
+          "title": "Prevodi opisa",
+          "subtitle": "Opcionalno. Dodaj opis na više jezika.",
+          "addLanguage": "Dodaj jezik",
+          "dialogTitle": "Izaberi jezike",
+          "dialogDescription": "Označi jezike za koje želiš da uneseš opis.",
+          "empty": "Nema izabranih jezika.",
+          "placeholder": "Opis na jeziku: {lang}"
+        }
+      }
+    }
   }
 }

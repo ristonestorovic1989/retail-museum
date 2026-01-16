@@ -270,7 +270,11 @@
       "empty": "No playlists available.",
       "previewTitle": "Preview playlist group",
       "previewPlaceholder": "Playlist preview",
-      "loading": "Loading playlists..."
+      "loading": "Loading playlists...",
+      "preview": {
+        "assetFallback": "Asset {index}",
+        "goToItem": "Go to item {index}"
+      }
     },
     "playlistGroups": {
       "title": "Playlist groups",
@@ -278,6 +282,24 @@
       "empty": "No playlist groups available.",
       "previewTitle": "Playlist group preview",
       "previewPlaceholder": "Select a playlist group to see its preview here.",
+      "preview": {
+        "title": "Preview",
+        "placeholder": "Select a playlist to preview its assets.",
+        "paused": "Paused",
+        "fullscreen": "Fullscreen",
+        "exitFullscreen": "Exit fullscreen",
+        "closeHint": "Close (Esc)",
+        "previous": "Previous",
+        "next": "Next",
+        "noAssets": "No assets in this playlist.",
+        "unknownDuration": "—",
+        "unknownAssets": "—",
+        "assetsCountShort": "{count} items",
+        "open": "Open preview",
+        "loading": "Loading preview…",
+        "assetFallback": "Asset {index}",
+        "goToItem": "Go to item {index}"
+      },
       "meta": {
         "duration": "Duration: {duration}",
         "numPlaylists": "{count} playlists"
@@ -708,5 +730,174 @@
     "saving": "Saving…",
     "prev": "Prev",
     "next": "Next"
+  },
+  "playlistGroups": {
+    "title": "Playlist Groups",
+    "subtitle": "Create logical groups of playlists.",
+    "searchPlaceholder": "Search groups…",
+    "actions": {
+      "createGroup": "Create Group"
+    },
+
+    "pagination": {
+      "itemsPerPage": "Rows per page",
+      "page": "Page {page} of {pages}",
+      "next": "Next",
+      "previous": "Previous"
+    },
+
+    "common": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "save": "Save",
+      "saving": "Saving…",
+      "delete": "Delete",
+      "deleting": "Deleting…",
+      "clear": "Clear"
+    },
+
+    "list": {
+      "loading": "Loading playlist groups…",
+      "loadFailed": "Failed to load playlist groups.",
+      "empty": "No playlist groups found."
+    },
+
+    "groupCard": {
+      "noDescription": "No description",
+      "playlistsCount": "{count} playlists",
+      "idLabel": "ID: {id}",
+
+      "playlistsInGroup": "Playlists in group",
+      "thisGroupPlaylists": "This group playlists",
+
+      "loadingGroupDetails": "Loading group details…",
+      "failedToLoadGroupDetails": "Failed to load group details.",
+      "noPlaylistsAssigned": "No playlists assigned.",
+
+      "loadingPlaylists": "Loading playlists…",
+      "failedToLoadPlaylists": "Failed to load playlists.",
+      "noPlaylistsFound": "No playlists found for this group.",
+
+      "openPlaylist": "Open",
+      "noThumbnail": "No thumbnail",
+      "itemsCount": "{count} items",
+
+      "preview": {
+        "title": "Preview",
+        "placeholder": "Select a playlist to preview its assets.",
+        "paused": "Paused",
+        "fullscreen": "Fullscreen",
+        "exitFullscreen": "Exit fullscreen",
+        "closeHint": "Close (Esc)",
+        "previous": "Previous",
+        "next": "Next",
+        "noAssets": "No assets in this playlist.",
+        "unknownDuration": "—",
+        "unknownAssets": "—",
+        "assetsCountShort": "{count} items",
+        "open": "Open preview",
+        "loading": "Loading preview…"
+      },
+
+      "actions": {
+        "edit": "Edit group",
+        "add": "Add playlists",
+        "export": "Export Excel",
+        "delete": "Delete group",
+        "create": "Create group",
+        "removeFromGroup": "Remove from group"
+      }
+    },
+
+    "toasts": {
+      "addPlaylistsTitle": "Playlists added",
+      "addPlaylistsDesc": "Selected playlists were successfully added to the group.",
+      "addPlaylistsFailedTitle": "Failed to add playlists",
+      "groupCreated": {
+        "title": "Group created",
+        "desc": "\"{name}\" created."
+      },
+      "groupUpdated": {
+        "title": "Group updated",
+        "desc": "Changes saved."
+      },
+      "groupDeleted": {
+        "title": "Group deleted",
+        "desc": "\"{name}\" deleted."
+      },
+      "playlistRemoved": {
+        "title": "Removed",
+        "desc": "Playlist removed from the group."
+      },
+      "removeFailed": {
+        "title": "Remove failed"
+      },
+
+      "createFailed": { "title": "Create failed" },
+      "updateFailed": { "title": "Update failed" },
+      "deleteFailed": { "title": "Delete failed" },
+
+      "export": {
+        "title": "Export",
+        "desc": "Export for \"{name}\" will be implemented."
+      },
+
+      "openPlaylist": {
+        "title": "Playlist",
+        "desc": "Open playlist #{id} coming next."
+      },
+
+      "genericError": "Something went wrong."
+    },
+    "addPlaylists": {
+      "title": "Add playlists to group",
+      "desc": "Select playlists to add to \"{name}\".",
+      "searchPlaceholder": "Search playlists…",
+      "selectedCount": "{count} playlists selected",
+      "clearSelection": "Clear selection",
+      "empty": "No playlists found.",
+      "confirm": "Add {count} playlists",
+      "alreadyInGroup": "Already in this group",
+      "noPreview": "No preview available",
+      "assetsCount": "{count} assets"
+    },
+    "dialogs": {
+      "removePlaylist": {
+        "title": "Remove playlist",
+        "description": "Remove \"{playlist}\" from \"{group}\"?",
+        "descriptionFallback": "Are you sure you want to remove this playlist from the group?",
+        "confirm": "Remove",
+        "removing": "Removing…",
+        "cancel": "Cancel"
+      },
+      "deleteGroup": {
+        "title": "Delete group",
+        "description": "Are you sure you want to delete \"{name}\"?",
+        "descriptionFallback": "Are you sure you want to delete this group?",
+        "confirm": "Delete",
+        "deleting": "Deleting…",
+        "cancel": "Cancel"
+      },
+      "createGroup": {
+        "title": "Create playlist group",
+        "description": "Group playlists together for better organization.",
+        "fields": {
+          "name": "Group name",
+          "description": "Description",
+          "imageUrl": "Image URL",
+          "backgroundUrl": "Background URL",
+          "playlistIds": "Playlist IDs (comma-separated)"
+        },
+        "translations": {
+          "title": "Description translations",
+          "subtitle": "Optional. Add localized descriptions.",
+          "addLanguage": "Add language",
+          "dialogTitle": "Choose languages",
+          "dialogDescription": "Select which languages you want to provide descriptions for.",
+          "empty": "No languages selected.",
+          "placeholder": "Description in {lang}"
+        }
+      }
+    }
   }
 }

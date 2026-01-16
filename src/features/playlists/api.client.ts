@@ -1,6 +1,12 @@
 'use client';
 
-import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useMutation,
+  useQueries,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { clientFetch } from '@/lib/http/client';
@@ -19,6 +25,7 @@ import type {
   UpdatePlaylistPayload,
 } from './types';
 import { mapPlaylistDetails, mapPlaylistSummary } from './mappers';
+import { useMemo } from 'react';
 
 export const PLAYLISTS_QK = ['playlists'];
 export const PLAYLIST_QK = (id: number | string) => ['playlists', id];
@@ -259,4 +266,33 @@ export function useUpdatePlaylistAssetsMutation() {
       qc.invalidateQueries({ queryKey: PLAYLISTS_QK });
     },
   });
+}
+
+export function usePlaylistsByIdsQuery(ids: number[], enabled: boolean) {
+  const stableIds = useMemo(() => [...ids].sort((a, b) => a - b), [ids]);
+
+  const queries = useQueries({
+    queries: stableIds.map((id) => ({
+      queryKey: PLAYLIST_QK(id),
+      queryFn: () => fetchPlaylistById(id),
+      enabled: enabled && stableIds.length > 0,
+      staleTime: 60_000,
+    })),
+  });
+
+  const isLoading = queries.some((q) => q.isLoading);
+  const isFetching = queries.some((q) => q.isFetching);
+  const isError = queries.some((q) => q.isError);
+
+  const items = queries.map((q) => q.data).filter(Boolean);
+
+  const error = queries.find((q) => q.error)?.error ?? null;
+
+  return {
+    items,
+    isLoading,
+    isFetching,
+    isError,
+    error,
+  };
 }

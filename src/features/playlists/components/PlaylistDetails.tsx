@@ -1,10 +1,12 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
-import { Calendar, Clock, Monitor } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Calendar, Clock, Eye, Monitor } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { CenteredSpinner } from '@/components/shared/centered-spiner';
 
 import type { TFn } from '@/types/i18n';
 import { usePlaylistQuery, useUpdatePlaylistAssetsMutation } from '../api.client';
@@ -15,7 +17,9 @@ import { PlaylistAddAssetsDialog } from './PlaylistAddAssetsDialog';
 import { PlaylistDetailsHeader } from './PlaylistDetails/PlaylistDetailsHeader';
 import { InfoBlock } from './PlaylistDetails/InfoBlock';
 import { PlaylistAssetsSection } from './PlaylistDetails/PlaylistAssetsSection';
-import { CenteredSpinner } from '@/components/shared/centered-spiner';
+
+import { PlaylistPreviewOverlay } from '@/features/devices/components/DevicePlaylistGroupsTab/PlaylistPreviewOverlay';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   t: TFn;
@@ -27,12 +31,16 @@ type Props = {
 export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Props) {
   const { data, isLoading, isError, error } = usePlaylistQuery(selectedId ?? '');
   const updateAssets = useUpdatePlaylistAssetsMutation();
-
-  console.log(data, 'data in details panel');
+  const tp = useTranslations('devices.playlistGroups');
 
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [addAssetsOpen, setAddAssetsOpen] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+
+  useEffect(() => {
+    setPreviewOpen(false);
+  }, [data?.id]);
 
   const playlistName = useMemo(
     () => (data?.name ? data.name : t('playlists.details.untitled')),
@@ -48,6 +56,9 @@ export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Pr
   const openEdit = useCallback(() => setEditOpen(true), []);
   const openDelete = useCallback(() => setDeleteOpen(true), []);
   const openAddAssets = useCallback(() => setAddAssetsOpen(true), []);
+
+  const openPreview = useCallback(() => setPreviewOpen(true), []);
+  const closePreview = useCallback(() => setPreviewOpen(false), []);
 
   const handleDeleteCompleted = useCallback(() => {
     setDeleteOpen(false);
@@ -98,8 +109,8 @@ export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Pr
         )}
 
         {selectedId != null && data && (
-          <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
-            <div className="shrink-0 space-y-6">
+          <div className="relative flex-1 min-h-0 flex flex-col overflow-hidden">
+            <div className="shrink-0 space-y-3">
               <PlaylistDetailsHeader
                 t={t}
                 playlist={data}
@@ -107,7 +118,14 @@ export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Pr
                 onDelete={openDelete}
               />
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="flex justify-end">
+                <Button variant="outline" className="gap-2" onClick={openPreview}>
+                  <Eye className="h-4 w-4" />
+                  Preview
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 pt-1">
                 <InfoBlock
                   icon={<Clock className="h-4 w-4" />}
                   label={t('playlists.details.imageDuration')}
@@ -162,6 +180,14 @@ export function PlaylistDetailsPanel({ t, companyId, selectedId, onDeleted }: Pr
               playlistId={data.id}
               playlistName={data.name}
               onDeleted={handleDeleteCompleted}
+            />
+
+            <PlaylistPreviewOverlay
+              isOpen={previewOpen}
+              playlist={data}
+              assets={data.assets ?? []}
+              onClose={closePreview}
+              t={tp}
             />
           </div>
         )}

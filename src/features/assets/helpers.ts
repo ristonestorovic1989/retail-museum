@@ -7,11 +7,9 @@ const VIDEO_EXTENSIONS = ['mp4', 'webm', 'mov', 'avi', 'mkv', 'flv', 'wmv'];
 const IMAGE_EXTENSIONS = ['jpg', 'JPG', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp', 'mjpeg'];
 
 export const getAssetType = (asset: AssetListItem): AssetKind => {
-  // 1) Izvuci ekstenziju iz path-a ili imena
   const source = asset.path || asset.name || '';
   const ext = source.split('.').pop()?.toLowerCase() ?? '';
 
-  // 2) Primarna detekcija – po ekstenziji
   if (VIDEO_EXTENSIONS.includes(ext)) {
     return 'video';
   }
@@ -20,7 +18,6 @@ export const getAssetType = (asset: AssetListItem): AssetKind => {
     return 'image';
   }
 
-  // 3) Fallback – po assetTypeId (ako backend ipak ima smislen info)
   switch (asset.assetTypeId) {
     case AssetTypeId.Video:
       return 'video';
